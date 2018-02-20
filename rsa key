@@ -1,0 +1,20 @@
+Your identification has been saved in /Users/kyrachang/.ssh/aws-aC.
+Your public key has been saved in /Users/kyrachang/.ssh/aws-aC.pub.
+The key fingerprint is:
+SHA256:wDRT36CcYQZlihH4STbrA68wGcnkZ3eN66OOQh74vbs aws-aC
+The key's randomart image is:
++---[RSA 2048]----+
+|   .o.=+B .      |
+| .. += O = o     |
+|+. +.++ * . .    |
+|oo.o+. + .       |
+|.oo+. . S        |
+|=o  +  .         |
+|o+.o ..          |
+| oo o  o         |
+|  ..E*. .        |
++----[SHA256]-----+
+Enter passphrase: 
+WARNING: Uploaded SSH public key for "aws-aC" into EC2 for region us-west-1.
+
+pwd, idk what is this lol
