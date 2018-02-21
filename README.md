@@ -30,6 +30,19 @@ git commit -am "(whatever message you want)"
 git push origin master
 ```
 
+### Github way
+1. Download the file you want to do some changes
+2. Do some changes
+3. Go to the place where you download the file and click on **upload files**
+   ![alt text][rubbish]
+4. This page will come up, be sure to write down the commit message as clear as possible to let others know what changes you've made (but don't have to be like 'change on line 14' that kind of detail)
+   ![alt text][rubbishs]
+
+
+
+[rubbish]: https://github.berkeley.edu/kyra-chang/artistiCal/blob/master/rubbish.png
+[rubbishs]: https://github.berkeley.edu/kyra-chang/artistiCal/blob/master/rubbishs.png
+
 
 
 
