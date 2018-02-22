@@ -1,14 +1,19 @@
 # artistiCal
 
 ## Introduction
-All these files, made by `django-admin startproject`, is the whole block of our web app.
-
-The thing we're going to do is mainly in the **aC_bookfest** folder, made by `django-admin startapp`.
-
-The folder **artistiCal** you see on this page is more like the backstage page, which we may not need now.
 
 ```
 artistiCal
+├── aC_bookfest
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── db.sqlite3
 ├───manage.py
 └───artistiCal
         settings.py
@@ -16,11 +21,26 @@ artistiCal
         wsgi.py
         __init__.py
 ```
+All these files, made by `django-admin startproject`, is the whole block of our web app.
+
+The thing we're going to do is mainly in the **aC_bookfest** folder, made by `django-admin startapp`.
+
+* We define all objects called `Models` – this is a place in which we will define our components that will appear in our website.
+
+* A view is a place where we put the "logic" of our application. It will request information from the `model` you created before and pass it to a `template`. `Views` are just Python functions.
+
+* Django `template` tags allow us to transfer Python-like things into HTML, so you can build dynamic websites faster.
+   Currently we haven't built any html file in aC_bookfest yet, that'll be discussed how we build the platform later.
+
+The folder **artistiCal** you see on this page is more like the backstage page, which we may not need now.
+
 * `manage.py` is a script that helps with management of the site. With it we will be able (amongst other things) to start a web server on our computer without installing anything else.
 
 * The `settings.py` file contains the configuration of your website.
 
 * `urls.py` file contains a list of patterns used by urlresolver.
+
+
 
 The folder **.ebextensions** is for using **EB CLI** to communicate local file with the AWS system.
 
