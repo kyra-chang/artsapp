@@ -7,9 +7,24 @@ The thing we're going to do is mainly in the **aC_bookfest** folder, made by `dj
 
 The folder **artistiCal** you see on this page is more like the backstage page, which we may not need now.
 
+```
+artistiCal
+├───manage.py
+└───artistiCal
+        settings.py
+        urls.py
+        wsgi.py
+        __init__.py
+```
+* `manage.py` is a script that helps with management of the site. With it we will be able (amongst other things) to start a web server on our computer without installing anything else.
+
+* The `settings.py` file contains the configuration of your website.
+
+* `urls.py` file contains a list of patterns used by urlresolver.
+
 The folder **.ebextensions** is for using **EB CLI** to communicate local file with the AWS system.
 
-`manage.py` is a script that helps with management of the site. With it we will be able (amongst other things) to start a web server on our computer without installing anything else.
+
 
 ## EB CLI
 It is a command line tool that use your terminal to communicate with the AWS system. You can use the AWS website instead to do the same thing, e.g. upload the project and deploy, init a new project...
