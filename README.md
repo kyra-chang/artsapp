@@ -57,7 +57,12 @@ It is a command line tool that use your terminal to communicate with the AWS sys
 
    This step will pull all the files into the folder you're in
 
-3. Do some changes
+3. For the first time you have to do this step:
+   ```
+   git config --global user.name "(type your calnet username)"
+   git config --global user.email "(type your calnet email)"
+   ```
+   then you can start doing some changes to the project
 
 4. After you finished, do the following to upload your version
 
