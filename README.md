@@ -9,6 +9,8 @@ The folder **artistiCal** you see on this page is more like the backstage page, 
 
 The folder **.ebextensions** is for using **EB CLI** to communicate local file with the AWS system.
 
+`manage.py` is a script that helps with management of the site. With it we will be able (amongst other things) to start a web server on our computer without installing anything else.
+
 ## EB CLI
 It is a command line tool that use your terminal to communicate with the AWS system. You can use the AWS website instead to do the same thing, e.g. upload the project and deploy, init a new project...
 
