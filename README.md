@@ -65,7 +65,7 @@ It is a command line tool that use your terminal to communicate with the AWS sys
 ### Terminal way
 1. Add a new folder in whatever you want in your computer, or just skip this step
 
-2. `git clone https://github.berkeley.edu/kyra-chang/artistiCal.git` 
+2. `git clone https://github.berkeley.edu/artistiCal/artistiCal.git` 
 
    This step will pull all the files into the folder you're in
 
