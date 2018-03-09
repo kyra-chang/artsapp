@@ -3027,10 +3027,11 @@
 
 /* Banner */
 /* background design stuff. notice I left background-image empy for now */
+/* {% static 'css/main.css' %}*/
 	#banner {
 		background-attachment: scroll,							fixed;
 		background-color: #ffffff;
-		background-image: url("images/overlay.png"), url("../../images/dance.gif");
+		background-image: url("/static/images/overlay.png"), url("/static/images/dance.GIF");
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
 		background-size: auto,							cover;
