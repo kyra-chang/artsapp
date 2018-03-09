@@ -18,6 +18,5 @@ from django.contrib import admin
 from aC_bookfest import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^$', views.post_list, name='post_list')
 ]
