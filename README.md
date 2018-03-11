@@ -10,9 +10,20 @@ artistiCal
 │   ├── apps.py
 │   ├── migrations
 │   │   └── __init__.py
+│   ├── templates
+│   │   ├── alpha
+│   │   │   ├── ...
+│   │   │   └───index.html
+│   │   └───form
 │   ├── models.py
 │   ├── tests.py
 │   └── views.py
+├── static
+│   ├── css
+│   ├── fonts
+│   ├── images
+│   ├── js
+│   └───sass
 ├── db.sqlite3
 ├───manage.py
 └───artistiCal
@@ -41,6 +52,7 @@ The folder **artistiCal** you see on this page is more like the backstage page, 
 * `urls.py` file contains a list of patterns used by urlresolver.
 
 
+The folder **static** stores all the static files like css, js, fonts, images, sass.
 
 The folder **.ebextensions** is for using **EB CLI** to communicate local file with the AWS system.
 
@@ -53,7 +65,7 @@ It is a command line tool that use your terminal to communicate with the AWS sys
 ### Terminal way
 1. Add a new folder in whatever you want in your computer, or just skip this step
 
-2. `git clone https://github.berkeley.edu/kyra-chang/artistiCal.git` 
+2. `git clone https://github.berkeley.edu/artistiCal/artistiCal.git` 
 
    This step will pull all the files into the folder you're in
 
