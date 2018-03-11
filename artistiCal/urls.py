@@ -14,9 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf.urls import include
 from django.contrib import admin
-from aC_bookfest import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django import views
 
 urlpatterns = [
-    url(r'^$', views.post_list, name='post_list')
+    url(r'', include('aC_bookfest.urls')),
+    # for every URL tshat starts with /, Django will find a corresponding view
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
