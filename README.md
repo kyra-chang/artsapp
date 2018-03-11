@@ -1,12 +1,36 @@
 # artistiCal
 
 ## Update
-Before starting, do the following step to update your project repo folder
-```
-git pull https://github.berkeley.edu/artistiCal/artistiCal
-git push origin master
-```
-So that your git is in this new address instead of the old one!
+1. Before starting, do the following step to update your project repo folder
+
+   `git remote -v`
+   
+   The output may be like this:
+   ```
+   origin	https://github.berkeley.edu/kyra-chang/artistiCal.git (fetch)
+   origin	https://github.berkeley.edu/kyra-chang/artistiCal.git (push)
+   ```
+   but this is the old address, we need a new one
+2. so do the following:
+   ```
+   git remote set-url --delete origin https://github.berkeley.edu/kyra-chang/artistiCal.git
+   git remote set-url --add origin https://github.berkeley.edu/artistiCal/artistiCal.git
+   ```
+   Check again for your remote address:
+   
+   `git remote -v`
+   
+   The output may include this:
+   ```
+   origin	https://github.berkeley.edu/artistiCal/artistiCal.git (fetch)
+   origin	https://github.berkeley.edu/artistiCal/artistiCal.git (push)
+   ```
+3. Last step, upload your local repo:
+   ```
+   git pull https://github.berkeley.edu/artistiCal/artistiCal
+   git push origin master
+   ```
+   So that your git repo is in this new address instead of the old one! Hurray!
 
 
 ## Introduction
