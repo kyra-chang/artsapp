@@ -1,5 +1,14 @@
 # artistiCal
 
+## Update
+Before starting, do the following step to update your project repo folder
+```
+git pull https://github.berkeley.edu/artistiCal/artistiCal
+git push origin master
+```
+So that your git is in this new address instead of the old one!
+
+
 ## Introduction
 
 ```
