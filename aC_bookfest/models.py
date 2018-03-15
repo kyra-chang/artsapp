@@ -53,17 +53,16 @@ class Profile(models.Model):
         max_length=2, blank=True,
         choices=YEAR_CHOICES,null=True,
     )
-    major = models.CharField(blank=True,max_length=50,null=True,)
-    age = models.IntegerField(blank=True,null=True,)
+    major = models.CharField(max_length=50,null=True,blank=True,)
+    age = models.IntegerField(null=True,blank=True,)
     gender = models.CharField(
-        max_length=1, blank=True,null=True,
+        max_length=1,null=True,blank=True,
         choices=GENDER_CHOICES,
     )
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        print ("create")
         Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)

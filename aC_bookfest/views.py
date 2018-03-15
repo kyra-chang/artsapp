@@ -9,6 +9,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import ProfileForm
 from django.db import transaction
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.views.generic.edit import UpdateView
+from .models import Profile
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
 
 def post_list(request):
     return render(request, 'alpha/index.html', {})
@@ -42,7 +47,7 @@ def model_form_upload(request):
     })
 
 @transaction.atomic
-def signup(request):
+def profile_create(request):
     if request.method == 'POST':
         user_form = UserCreationForm(request.POST)
         profile_form = ProfileForm(request.POST)
@@ -63,7 +68,25 @@ def signup(request):
     else:
         user_form = UserCreationForm()
         profile_form = ProfileForm()
-    return render(request, 'registration/signup.html', {
+    return render(request, 'user/signup.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+
+class ProfileUpdate(UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    template_name = "user/profile_update.html"
+    def get_object(self, *args, **kwargs):
+        user = get_object_or_404(User, pk=self.kwargs['pk'])
+        return user.profile
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse("user")
+
+def UserView(request):
+    return render(request, 'user/user.html', {
+    })
+
+
