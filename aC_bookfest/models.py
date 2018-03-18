@@ -4,6 +4,31 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+class Event(models.Model):  
+    name = models.CharField(max_length=500)
+    time = models.DateField()
+    organizer = models.CharField(max_length=100)
+    location = models.CharField(max_length=500)
+    description = models.CharField(max_length=5000)
+    points = models.IntegerField()
+
+class Order(models.Model):  
+    event = models.ForeignKey("Event", null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey("User", null=False, db_column="studentId")
+    order_date = models.Datefield(null=False)
+    order_checkin = models.IntegerField()
+
+class Interested(models.Model): 
+    user = models.ForeignKey("User", null=False, db_column="studentId")
+    event = models.ForeignKey("Event", null=False, db_column="eventId")
+    
+class Comment(models.Model):    
+    event = models.ForeignKey("Event", null=False, db_column="eventId")
+    user = models.ForeignKey("User", null=False, db_column="studentId")
+    comment = models.TextField()
+    photo = models.FileField(upload_to='documents/')
+    created_date = models.DateTimeField(default=timezone.now)
+
 class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/')
@@ -35,19 +60,11 @@ class Profile(models.Model):
     )
     M = 'M'
     F = 'F'
-    L = 'L'
-    G = 'G'
-    B = 'B'
-    T = 'T'
-    Q = 'Q'
+    O = 'O'
     GENDER_CHOICES = (
         (M, 'Male'),
         (F, 'Female'),
-        (L, 'Lesbian'),
-        (G, 'Gay'),
-        (B, 'Bisexual'),
-        (T, 'Transgender'),
-        (Q, 'Queer')
+        (O, 'Other')
     )
     year = models.CharField(
         max_length=2, blank=True,
@@ -59,6 +76,7 @@ class Profile(models.Model):
         max_length=1,null=True,blank=True,
         choices=GENDER_CHOICES,
     )
+    points = models.IntegerField(null=True,blank=True,)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
