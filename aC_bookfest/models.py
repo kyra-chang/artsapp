@@ -9,7 +9,12 @@ class Document(models.Model):
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
-
+class EventInfo(models.Model):
+    Title = models.CharField(max_length=255, blank=True)
+    Location = models.CharField(max_length=255, blank=True)
+    Time = models.DateTimeField(auto_now_add=True)
+    Description = models.CharField(max_length=10000, blank=True)
+    Cost = models.IntegerField(max_length=500)
 #for the use of the extending User model, please go to this website:
 #https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#extending-the-existing-user-model
 #Sign Up With Profile Model
