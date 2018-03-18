@@ -14,17 +14,17 @@ class Event(models.Model):
 
 class Order(models.Model):  
     event = models.ForeignKey("Event", null=False, on_delete=models.CASCADE)
-    user = models.ForeignKey("User", null=False, db_column="studentId")
+    user = models.ForeignKey("User", null=False, db_column="studentId", on_delete=models.CASCADE)
     order_date = models.Datefield(null=False)
     order_checkin = models.IntegerField()
 
 class Interested(models.Model): 
-    user = models.ForeignKey("User", null=False, db_column="studentId")
-    event = models.ForeignKey("Event", null=False, db_column="eventId")
+    user = models.ForeignKey("User", null=False, db_column="studentId", on_delete=models.CASCADE)
+    event = models.ForeignKey("Event", null=False, db_column="eventId", on_delete=models.CASCADE)
     
 class Comment(models.Model):    
-    event = models.ForeignKey("Event", null=False, db_column="eventId")
-    user = models.ForeignKey("User", null=False, db_column="studentId")
+    event = models.ForeignKey("Event", null=False, db_column="eventId", on_delete=models.CASCADE)
+    user = models.ForeignKey("User", null=False, db_column="studentId", on_delete=models.CASCADE)
     comment = models.TextField()
     photo = models.FileField(upload_to='documents/')
     created_date = models.DateTimeField(default=timezone.now)
