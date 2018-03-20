@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+	  <form method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button type="submit">Upload</button>
+	  </form>
+	{% endif %}
+
+	{% for comment in event.comments.all %}
+	  <div class="comment">
+	      <div class="date">{{ comment.created_date }}</div>
+	      <strong>{{ comment.user }}</strong>
+	      <p>{{ comment.text|linebreaks }}</p>
+	      <img src="{{ comment.photo.url }}" alt="{{ comment.photo.name }}" /> <!-- Images -->
+	  </div>
+	{% empty %}
+	  <p>No comments here yet :(</p>
+	{% endfor %}
+{% endblock %}

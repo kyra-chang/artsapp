@@ -5,13 +5,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^$', views.post_list, name='post_list'),
+    url(r'^$', views.index, name='index'),
     url(r'^home/$', views.home, name='home'),
-    url(r'^uploads/simple/$', views.simple_upload, name='simple_upload'),
-    url(r'^uploads/form/$', views.model_form_upload, name='model_form_upload'),
+    #url(r'^uploads/$', views.model_form_upload, name='model_form_upload'),
     url(r'^signup/$', views.profile_create, name='profile_create'),
     url(r'^update/(?P<pk>\d+)/$', views.ProfileUpdate.as_view(), name='profile_update'),
     url(r'^user/$', views.UserView, name='user'),
+    url(r'^event/(?P<pk>\d+)/$', views.event_comment_create, name='event_detail'),
 ]
 
 if settings.DEBUG:

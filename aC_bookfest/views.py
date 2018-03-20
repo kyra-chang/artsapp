@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from .forms import DocumentForm
+from .forms import CommentForm
 
-from .models import Document
+from .models import Comment
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import ProfileForm
@@ -11,41 +11,43 @@ from django.db import transaction
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView
-from .models import Profile
+from .models import Profile, Event
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.utils import timezone
 
-def post_list(request):
+# - Kyra 3.19.2018
+# this method is to render index
+def index(request):
     return render(request, 'alpha/index.html', {})
 
+# - Kyra 3.19.2018
+# this method is for testing the homepage feature (lists of events), not really finished
 def home(request):
-    documents = Document.objects.all()
-    return render(request, 'form/home.html', { 'documents': documents })
+    events = Event.objects.all()
+    return render(request, 'form/home.html', { 'events': events })
 
 
-def simple_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'form/simple_upload.html', {
-            'uploaded_file_url': uploaded_file_url
-        })
-    return render(request, 'form/simple_upload.html')
-
-def model_form_upload(request):
+# - Kyra 3.19.2018
+# this method is to upload the pictures and comments for specific events
+def event_comment_create(request, pk):
+    event = get_object_or_404(Event, pk=pk)
     if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
+        form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.event = event
+            comment.created_date = timezone.now()
+            comment.save()
     else:
-        form = DocumentForm()
-    return render(request, 'form/model_form_upload.html', {
-        'form': form
+        form = CommentForm()
+    return render(request, 'form/event.html', {
+        'form': form, 'event': event
     })
 
+# - Kyra 3.19.2018
+# this method is for creating the user and its related profile after submitting the form
 @transaction.atomic
 def profile_create(request):
     if request.method == 'POST':
@@ -73,7 +75,9 @@ def profile_create(request):
         'profile_form': profile_form
     })
 
-
+# - Kyra 3.19.2018
+# this class is for updating the profile after submitting the form
+# so we actually have 2 ways to write the controller
 class ProfileUpdate(UpdateView):
     model = Profile
     form_class = ProfileForm
@@ -85,6 +89,8 @@ class ProfileUpdate(UpdateView):
     def get_success_url(self, *args, **kwargs):
         return reverse("user")
 
+# - Kyra 3.19.2018
+# This method is just render the related html file for viewing the user dashboard
 def UserView(request):
     return render(request, 'user/user.html', {
     })

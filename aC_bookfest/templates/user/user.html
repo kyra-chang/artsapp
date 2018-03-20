@@ -1,5 +1,11 @@
 {% if user.is_authenticated %}
-    <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small><small>(<a href="{% url 'profile_update' pk=user.profile.id %}">Edit Profile</a>)</small></p>
+    <h2 class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small><small>(<a href="{% url 'profile_update' pk=user.profile.id %}">Edit Profile</a>)</small></h2>
+    <h2>Profile:</h2>
+    <h3>Year: {{ user.profile.year }}</h3>
+    <h3>Major: {{ user.profile.major }}</h3>
+    <h3>Age: {{ user.profile.age }}</h3>
+    <h3>Gender: {{ user.profile.gender }}</h3>
+    <h3>Points: {{ user.profile.points }}</h3>
 
 {% else %}
     <a href="{% url 'login' %}" class="top-menu">Login</a>

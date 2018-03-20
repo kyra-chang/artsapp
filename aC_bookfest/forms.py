@@ -1,11 +1,11 @@
 from django import forms
-from .models import Document
+from .models import Comment
 from .models import Profile
 
-class DocumentForm(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
-        model = Document
-        fields = ('description', 'document', )
+        model = Comment
+        fields = ('text', 'photo', )
 
 class ProfileForm(forms.ModelForm):
     class Meta:

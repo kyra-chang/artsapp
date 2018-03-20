@@ -4,42 +4,44 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-class Event(models.Model):  
-    name = models.CharField(max_length=500)
-    time = models.DateField()
-    organizer = models.CharField(max_length=100)
-    location = models.CharField(max_length=500)
-    description = models.CharField(max_length=5000)
-    points = models.IntegerField()
-
-class Order(models.Model):  
-    event = models.ForeignKey("Event", null=False, on_delete=models.CASCADE)
-    user = models.ForeignKey("User", null=False, db_column="studentId", on_delete=models.CASCADE)
-    order_date = models.Datefield(null=False)
-    order_checkin = models.IntegerField()
-
-class Interested(models.Model): 
-    user = models.ForeignKey("User", null=False, db_column="studentId", on_delete=models.CASCADE)
-    event = models.ForeignKey("Event", null=False, db_column="eventId", on_delete=models.CASCADE)
-    
-class Comment(models.Model):    
-    event = models.ForeignKey("Event", null=False, db_column="eventId", on_delete=models.CASCADE)
-    user = models.ForeignKey("User", null=False, db_column="studentId", on_delete=models.CASCADE)
-    comment = models.TextField()
-    photo = models.FileField(upload_to='documents/')
-    created_date = models.DateTimeField(default=timezone.now)
-
-class Document(models.Model):
-    description = models.CharField(max_length=255, blank=True)
-    document = models.FileField(upload_to='documents/')
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-
-class EventInfo(models.Model):
+class Event(models.Model):
     Title = models.CharField(max_length=255, blank=True)
+    Organizer = models.CharField(max_length=100)
     Location = models.CharField(max_length=255, blank=True)
     Time = models.DateTimeField(auto_now_add=True)
     Description = models.CharField(max_length=10000, blank=True)
-    Cost = models.IntegerField(max_length=500)
+    Cost = models.IntegerField()
+    Max_order = models.IntegerField(null=False)
+
+class Order(models.Model):  
+    event = models.ForeignKey(Event, null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    order_date = models.DateTimeField(null=False)
+    order_checkin = models.IntegerField()
+
+class Interested(models.Model): 
+    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, null=False, db_column="eventId", on_delete=models.CASCADE)
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
+    return 'comments/event_{0}/{1}'.format(instance.event.id, filename)
+
+class Comment(models.Model):    
+    event = models.ForeignKey(Event, related_name='comments', null=False, db_column="eventId", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    text = models.TextField(max_length=10000, blank=True)
+    photo = models.FileField(upload_to=user_directory_path)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to=user_directory_path)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
+
+
 #for the use of the extending User model, please go to this website:
 #https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#extending-the-existing-user-model
 #Sign Up With Profile Model

@@ -1,22 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <ul>
-    <li>
-      <a href="{% url 'model_form_upload' %}">Model Form Upload</a>
-    </li>
-  </ul>
+
+    {% for event in events %}
+        <div class="post">
+            <a href="{% url 'event_detail' pk=event.pk %}">Comments: {{ event.comments.count }}</a>
+            <a href="{% url 'event_detail' pk=event.pk %}">Details</a>
+        </div>
+    {% endfor %}
 
 
   <p>Uploaded files:</p>
-  <ul>
-
-    {% for obj in documents %}
-      <li>
-        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
-        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
-        <img src="{{ obj.document.url }}" alt="{{ obj.document.name }}" /> <!-- Images -->
-      </li>
-    {% endfor %}
-  </ul>
+  
 {% endblock %}
