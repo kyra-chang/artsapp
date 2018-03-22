@@ -2,17 +2,24 @@
 
 {% block content %}
 
+    {% if latest_event_list %}
+        {% for event in latest_event_list %}
+            <div class="post">
+                {% if event.Picture.url %}
+                    <img src="{{ event.Picture.url }}" alt="{{ event.Title }}" style="height: 100px"/>
+                {% endif %}
+                <h1><a href="{% url 'event_detail' pk=event.pk %}">{{ event.Title }}</a></h1>
+                <h3>{{ event.Time }}</h3>
+                {% if event.orders.count > 0 %}
+                    <h3>{{ event.orders.count }} people ordered the tickets</h3>
+                {% else %}
+                    <h3>Be the first one to order the ticket!</h3>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No events are available.</p>
+    {% endif %}
 
-    {% for event in events %}
-        <div class="post">
-        	<h1><a href="{% url 'event_detail' pk=event.pk %}">{{ event.event_name }}</a></h1>
-        	<h3>{{ event.event_date }}</h3>
-        	{% if event.orders.count > 0 %}
-        		<h3>{{ event.orders.count }} people ordered the tickets</h3>
-        	{% else %}
-        		<h3>Be the first one to order the ticket!</h3>
-        	{% endif %}
-        </div>
-    {% endfor %}
   
 {% endblock %}

@@ -26,36 +26,12 @@ from django.utils import timezone
 def index(request):
     return render(request, 'alpha/index.html', {})
 
-# - Kyra 3.19.2018
-# this method is for testing the homepage feature (lists of events), not really finished
+# Done by Alex
+# Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
 def home(request):
-    events = Event.objects.all()
-    return render(request, 'form/home.html', { 'events': events })
-
-# - Kyra 3.22.2018
-# this method is to populate all campus events on A+D calendar feed
-# def event_order(request, pk):
-#     event = get_object_or_404(Event, pk=pk)
-#     if request.method == 'POST':
-#         form = OrderForm(request.POST)
-#         if form.is_valid():
-#             order = form.save(commit=False)
-#             order.user = request.user
-#             order.event = event
-#             order.order_date = timezone.now()
-#             order.save()
-#             event.Max_order
-#             # TODO verify if the save is success or not
-#             messages.success(request, 'You ordered the tickets!')
-#             request.user.profile.points -= event.Cost
-#             request.user.profile.save()
-#             return redirect('home')
-#     else:
-#         form = OrderForm()
-#     return render(request, 'form/order.html', {
-#         'form': form, 'event': event
-#     })
-
+    latest_event_list = Event.objects.order_by('Time')[:5]
+    #events = Event.objects.all()
+    return render(request, 'form/home.html', { 'latest_event_list': latest_event_list })
 
 
 # - Kyra 3.22.2018
@@ -96,6 +72,7 @@ def event_order(request, pk):
             event.save()
             # TODO verify if the save is success or not
             messages.success(request, 'You ordered the tickets!')
+            # leave point system and ranking feature later
             #request.user.profile.points -= event.Cost
             #request.user.profile.save()
             return redirect('home')
@@ -174,15 +151,16 @@ def UserView(request):
     return render(request, 'user/user.html', {
     })
 	
+# MERGED to index by Kyra
 # Done by Alex
 # Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
-def index_back(request):
-    latest_event_list = Events.objects.order_by('-event_date')[:5]
-    template = loader.get_template('homepage/index.html')
-    context = {
-        'latest_event_list': latest_event_list,
-    }
-    return HttpResponse(template.render(context, request))
+# def index_back(request):
+#     latest_event_list = Event.objects.order_by('Time')[:5]
+#     template = loader.get_template('homepage/index.html')
+#     context = {
+#         'latest_event_list': latest_event_list,
+#     }
+#     return HttpResponse(template.render(context, request))
 
 # Done by Alex
 # Displays top 10 artsiest bears

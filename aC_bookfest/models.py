@@ -1,12 +1,12 @@
 from django.db import models
-
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 def event_pic_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
-    return 'event_{0}/{1}'.format(instance.event.id, filename)
+    return 'event_{0}/{1}'.format(instance.id, filename)
 
 class Event(models.Model):
     Title = models.CharField(max_length=255, blank=True)
@@ -16,7 +16,7 @@ class Event(models.Model):
     Description = models.CharField(max_length=10000, blank=True)
     Cost = models.IntegerField()
     Max_order = models.IntegerField(null=False)
-    Picture = models.FileField(upload_to=event_pic_path)
+    Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg')
 
 
 class Order(models.Model):  
