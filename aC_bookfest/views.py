@@ -3,6 +3,11 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .forms import CommentForm
 
+from django.http import HttpResponse
+from django.template import loader
+
+from .models import Event
+
 from .models import Comment
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -132,5 +137,15 @@ class ProfileUpdate(UpdateView):
 def UserView(request):
     return render(request, 'user/user.html', {
     })
+	
+# Done by Alex
+# Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
+def index(request):
+    latest_event_list = Events.objects.order_by('-event_date')[:5]
+    template = loader.get_template('aC_bookfest/index.html')
+    context = {
+        'latest_event_list': latest_event_list,
+    }
+    return HttpResponse(template.render(context, request))
 
 

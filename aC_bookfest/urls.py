@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+	#url(r'^$', views.index, name='home'), (home page url)
     url(r'^$', views.index, name='index'),
     url(r'^home/$', views.home, name='home'),
     #url(r'^uploads/$', views.model_form_upload, name='model_form_upload'),

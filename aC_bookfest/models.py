@@ -4,14 +4,17 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
 class Event(models.Model):
-    Title = models.CharField(max_length=255, blank=True)
-    Organizer = models.CharField(max_length=100)
-    Location = models.CharField(max_length=255, blank=True)
-    Time = models.DateTimeField(auto_now_add=True)
-    Description = models.CharField(max_length=10000, blank=True)
-    Cost = models.IntegerField()
-    Max_order = models.IntegerField(null=False)
+	event_picture = models.CharField(max_length=500)
+	event_interested = models.IntegerField(default=0)
+	event_name = models.CharField(max_length=50)
+	event_location = models.CharField(max_length=500)
+	event_description = models.CharField(max_length=5000)
+	event_date = models.DateTimeField('date of the event')
+	Organizer = models.CharField(max_length=100)
+	Cost = models.IntegerField()
+	Max_order = models.IntegerField(null=False)
 
 class Order(models.Model):  
     event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
