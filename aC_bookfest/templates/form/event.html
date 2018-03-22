@@ -7,6 +7,8 @@
     	<h3>{{ event.Location }}</h3>
     	<h3>Held by {{ event.Organizer }}</h3>
     	<h3>${{ event.Cost }} points</h3>
+    	<h3>{{ event.Max_order }} tickets available</h3>
+    	<!-- TODO  if Max_order == 0 ... no button to signup -->
     	{% if event.orders.count != None %}
 			<h3>{{ event.orders.count }} people ordered the tickets</h3>
 		{% else %}
@@ -17,7 +19,18 @@
 
     </div>
 	{% if user.is_authenticated %}
-	<a href="{% url 'event_order' pk=event.pk %}">Order</a>
+	<!-- TODO  add if statements to check if the points are enough to order -->
+	<!-- TODO  each user can only order once -->
+	<!-- TODO  Signup in waitlist -->
+	{% if event.Max_order != 0 %}
+		<a href="{% url 'event_order' pk=event.pk %}">Order</a>
+	{% else %}
+		<h3>No tickets left :'(</h3>
+		<h3>Signup in the waitlist</h3>
+	{% endif %}
+
+	<a href="{% url 'event_checkin' pk=event.pk %}">Checkin</a>
+
 	  <form method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    {{ form.as_p }}

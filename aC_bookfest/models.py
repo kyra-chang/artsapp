@@ -17,7 +17,7 @@ class Order(models.Model):
     event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
     user = models.ForeignKey(User, null=False, related_name='orders', db_column="studentId", on_delete=models.CASCADE)
     order_date = models.DateTimeField(null=False)
-    order_checkin = models.IntegerField(null=True)
+    order_checkin = models.DateTimeField(null=True)
 
 class Interested(models.Model): 
     user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
@@ -83,7 +83,8 @@ class Profile(models.Model):
         max_length=1,null=True,blank=True,
         choices=GENDER_CHOICES,
     )
-    points = models.IntegerField(null=True,blank=True,)
+    # TODO set initial value = 0? or 100?
+    points = models.IntegerField(null=True,blank=True,default=0)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

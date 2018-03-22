@@ -28,23 +28,52 @@ def home(request):
     return render(request, 'form/home.html', { 'events': events })
 
 # - Kyra 3.22.2018
-# UNDER CONSTRUCTION
-# this method is to checkin
-# def event_checkin(request, pk):
+# this method is to populate all campus events on A+D calendar feed
+# def event_order(request, pk):
 #     event = get_object_or_404(Event, pk=pk)
 #     if request.method == 'POST':
-#         form = CommentForm(request.POST, request.FILES)
+#         form = OrderForm(request.POST)
 #         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.user = request.user
-#             comment.event = event
-#             comment.created_date = timezone.now()
-#             comment.save()
+#             order = form.save(commit=False)
+#             order.user = request.user
+#             order.event = event
+#             order.order_date = timezone.now()
+#             order.save()
+#             event.Max_order
+#             # TODO verify if the save is success or not
+#             messages.success(request, 'You ordered the tickets!')
+#             request.user.profile.points -= event.Cost
+#             request.user.profile.save()
+#             return redirect('home')
 #     else:
-#         form = CommentForm()
-#     return render(request, 'form/event.html', {
+#         form = OrderForm()
+#     return render(request, 'form/order.html', {
 #         'form': form, 'event': event
 #     })
+
+
+
+# - Kyra 3.22.2018
+# UNDER CONSTRUCTION
+# this method is to checkin
+def event_checkin(request, pk):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            event = get_object_or_404(Event, pk=pk)
+            order = event.orders.filter(user=request.user)[0]
+            order.order_checkin = timezone.now()
+            order.save()
+            # TODO verify if the save is success or not
+            messages.success(request, 'You checkin!')
+            #request.user.profile.points += 500
+            #request.user.profile.save()
+            return redirect('home')
+    else:
+        form = OrderForm()
+    return render(request, 'form/checkin.html', {
+        'form': form
+    })
 
 # - Kyra 3.22.2018
 # this method is to order the tickets
@@ -58,7 +87,12 @@ def event_order(request, pk):
             order.event = event
             order.order_date = timezone.now()
             order.save()
+            event.Max_order -= 1
+            event.save()
+            # TODO verify if the save is success or not
             messages.success(request, 'You ordered the tickets!')
+            #request.user.profile.points -= event.Cost
+            #request.user.profile.save()
             return redirect('home')
     else:
         form = OrderForm()
@@ -78,6 +112,7 @@ def event_comment_create(request, pk):
             comment.event = event
             comment.created_date = timezone.now()
             comment.save()
+            # TODO verify if the save is success or not
     else:
         form = CommentForm()
     return render(request, 'form/event.html', {
@@ -97,6 +132,7 @@ def profile_create(request):
             profile_form = ProfileForm(request.POST, instance=user.profile)  # Reload the profile form with the profile instance
             profile_form.full_clean()  # Manually clean the form this time. It is implicitly called by "is_valid()" method
             profile_form.save() # Gracefully save the form
+            # TODO verify if the save is success or not
             raw_password = user_form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
