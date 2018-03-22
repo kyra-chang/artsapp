@@ -13,54 +13,32 @@ git commit -am "(whatever message you want)"
 git push origin master
 ```
 
-## Update
-1. Before starting, do the following step to update your project repo folder
-
-   `git remote -v`
-   
-   The output may be like this:
-   ```
-   origin	https://github.berkeley.edu/kyra-chang/artistiCal.git (fetch)
-   origin	https://github.berkeley.edu/kyra-chang/artistiCal.git (push)
-   ```
-   but this is the old address, we need a new one
-2. so do the following:
-   ```
-   git remote set-url --delete origin https://github.berkeley.edu/kyra-chang/artistiCal.git
-   git remote set-url --add origin https://github.berkeley.edu/artistiCal/artistiCal.git
-   ```
-   Check again for your remote address:
-   
-   `git remote -v`
-   
-   The output may include this:
-   ```
-   origin	https://github.berkeley.edu/artistiCal/artistiCal.git (fetch)
-   origin	https://github.berkeley.edu/artistiCal/artistiCal.git (push)
-   ```
-3. Last step, upload your local repo:
-   ```
-   git pull https://github.berkeley.edu/artistiCal/artistiCal
-   git push origin master
-   ```
-   So that your git repo is in this new address instead of the old one! Hurray!
-
-
 ## Introduction
+
+
 
 ```
 artistiCal
 ├── aC_bookfest
+│   ├── templates
+│   │   ├── frontend
+│   │   │   ├── base.html
+│   │   │   ├── index.html
+│   │   │   ├── event.html
+│   │   │   ├── checkin.html
+│   │   │   ├── claim.html
+│   │   │   ├── profile.html
+│   │   │   ├── myevents.html
+│   │   │   └───ranking.html (do it after everything above is done
+│   │   ├── alpha
+│   │   │   ├── ...
+│   │   │   └───index.html
+│   │   └───form
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
 │   ├── migrations
 │   │   └── __init__.py
-│   ├── templates
-│   │   ├── alpha
-│   │   │   ├── ...
-│   │   │   └───index.html
-│   │   └───form
 │   ├── models.py
 │   ├── tests.py
 │   └── views.py
@@ -106,6 +84,39 @@ The folder **.ebextensions** is for using **EB CLI** to communicate local file w
 
 ## EB CLI
 It is a command line tool that use your terminal to communicate with the AWS system. You can use the AWS website instead to do the same thing, e.g. upload the project and deploy, init a new project...
+
+## Update
+1. Before starting, do the following step to update your project repo folder
+
+   `git remote -v`
+   
+   The output may be like this:
+   ```
+   origin	https://github.berkeley.edu/kyra-chang/artistiCal.git (fetch)
+   origin	https://github.berkeley.edu/kyra-chang/artistiCal.git (push)
+   ```
+   but this is the old address, we need a new one
+2. so do the following:
+   ```
+   git remote set-url --delete origin https://github.berkeley.edu/kyra-chang/artistiCal.git
+   git remote set-url --add origin https://github.berkeley.edu/artistiCal/artistiCal.git
+   ```
+   Check again for your remote address:
+   
+   `git remote -v`
+   
+   The output may include this:
+   ```
+   origin	https://github.berkeley.edu/artistiCal/artistiCal.git (fetch)
+   origin	https://github.berkeley.edu/artistiCal/artistiCal.git (push)
+   ```
+3. Last step, upload your local repo:
+   ```
+   git pull https://github.berkeley.edu/artistiCal/artistiCal
+   git push origin master
+   ```
+   So that your git repo is in this new address instead of the old one! Hurray!
+
 
 ## How to collaborate
 ### Terminal way
