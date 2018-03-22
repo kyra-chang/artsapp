@@ -4,10 +4,42 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+class Event(models.Model):
+    Title = models.CharField(max_length=255, blank=True)
+    Organizer = models.CharField(max_length=100)
+    Location = models.CharField(max_length=255, blank=True)
+    Time = models.DateTimeField(auto_now_add=True)
+    Description = models.CharField(max_length=10000, blank=True)
+    Cost = models.IntegerField()
+    Max_order = models.IntegerField(null=False)
+
+class Order(models.Model):  
+    event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, related_name='orders', db_column="studentId", on_delete=models.CASCADE)
+    order_date = models.DateTimeField(null=False)
+    order_checkin = models.IntegerField(null=True)
+
+class Interested(models.Model): 
+    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, null=False, db_column="eventId", on_delete=models.CASCADE)
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
+    return 'comments/event_{0}/{1}'.format(instance.event.id, filename)
+
+class Comment(models.Model):    
+    event = models.ForeignKey(Event, related_name='comments', null=False, db_column="eventId", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    text = models.TextField(max_length=10000, blank=True)
+    photo = models.FileField(upload_to=user_directory_path)
+    created_date = models.DateTimeField(auto_now_add=True)
+
 class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
-    document = models.FileField(upload_to='documents/')
+    document = models.FileField(upload_to=user_directory_path)
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
 
 
 #for the use of the extending User model, please go to this website:
@@ -35,19 +67,11 @@ class Profile(models.Model):
     )
     M = 'M'
     F = 'F'
-    L = 'L'
-    G = 'G'
-    B = 'B'
-    T = 'T'
-    Q = 'Q'
+    O = 'O'
     GENDER_CHOICES = (
         (M, 'Male'),
         (F, 'Female'),
-        (L, 'Lesbian'),
-        (G, 'Gay'),
-        (B, 'Bisexual'),
-        (T, 'Transgender'),
-        (Q, 'Queer')
+        (O, 'Other')
     )
     year = models.CharField(
         max_length=2, blank=True,
@@ -59,6 +83,7 @@ class Profile(models.Model):
         max_length=1,null=True,blank=True,
         choices=GENDER_CHOICES,
     )
+    points = models.IntegerField(null=True,blank=True,)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

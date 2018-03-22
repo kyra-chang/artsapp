@@ -2,9 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Simple File Upload</title>
+    <title>artistical_test</title>
+    <style>
+      ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+      }
+
+      li {
+          display: inline;
+      }
+    </style>
   </head>
   <body>
+  	{% if user.is_authenticated %}
+	    <h2 class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small><small>(<a href="{% url 'profile_update' pk=user.profile.id %}">Edit Profile</a>)</small></h2>
+
+  	{% else %}
+  	    <a href="{% url 'login' %}" class="top-menu">Login</a>
+  	    <a href="{% url 'profile_create' %}" class="top-menu">Sign Up</a>
+  	    
+  	{% endif %}
+    {% block nav %}
+      <ul>
+        <li><a href="{% url 'home'%}">Home</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'user'%}">Profile</a></li>
+        {% endif %}
+          
+      </ul>
+    {% endblock %}
+
+
     {% block content %}
     {% endblock %}
   </body>

@@ -22,6 +22,7 @@ from django.contrib.auth import views
 
 urlpatterns = [
     url(r'', include('aC_bookfest.urls')),
+    url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/$', views.login, name='login', kwargs={'redirect_field_name': '~/'}),
     url(r'^accounts/logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
 
