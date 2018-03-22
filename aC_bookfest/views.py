@@ -142,10 +142,16 @@ def UserView(request):
 # Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
 def index(request):
     latest_event_list = Events.objects.order_by('-event_date')[:5]
-    template = loader.get_template('aC_bookfest/index.html')
+    template = loader.get_template('homepage/index.html')
     context = {
         'latest_event_list': latest_event_list,
     }
     return HttpResponse(template.render(context, request))
 
+# Done by Alex
+# Displays top 10 artsiest bears
+def TopUsers(request):
+    user_list = Profile.objects.order_by('-points')[:10]    
+    context_dict = {"users": user_list}
+    return render(request, 'ranking/ranking.html', context_dict)
 
