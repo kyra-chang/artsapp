@@ -1,5 +1,18 @@
 # artistiCal
 
+## How to collaborate
+1. ALWAYS DO THIS FIRST `git pull origin master`
+
+2. then you can start doing some changes to the project
+
+3. After you finished, do the following to upload your version
+
+```
+git add .
+git commit -am "(whatever message you want)"
+git push origin master
+```
+
 ## Update
 1. Before starting, do the following step to update your project repo folder
 
