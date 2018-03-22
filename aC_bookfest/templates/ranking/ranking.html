@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Artsiest Bears!</h1>
+	{% for my_user in user_list %}    
+    {{ my_user.points }}
+{% endblock%}

@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+def event_pic_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
+    return 'event_{0}/{1}'.format(instance.event.id, filename)
+
 class Event(models.Model):
     Title = models.CharField(max_length=255, blank=True)
     Organizer = models.CharField(max_length=100)
@@ -12,6 +16,8 @@ class Event(models.Model):
     Description = models.CharField(max_length=10000, blank=True)
     Cost = models.IntegerField()
     Max_order = models.IntegerField(null=False)
+    Picture = models.FileField(upload_to=event_pic_path)
+
 
 class Order(models.Model):  
     event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
@@ -25,7 +31,7 @@ class Interested(models.Model):
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
-    return 'comments/event_{0}/{1}'.format(instance.event.id, filename)
+    return 'event_{0}/comments/{1}'.format(instance.event.id, filename)
 
 class Comment(models.Model):    
     event = models.ForeignKey(Event, related_name='comments', null=False, db_column="eventId", on_delete=models.CASCADE)

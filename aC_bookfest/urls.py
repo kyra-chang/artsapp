@@ -5,7 +5,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+	  #url(r'^$', views.index, name='home'), (home page url)
     url(r'^$', views.index, name='index'),
+    url(r'index_back/^$', views.index_back, name='index_back'),
+    
     url(r'^home/$', views.home, name='home'),
     #url(r'^uploads/$', views.model_form_upload, name='model_form_upload'),
     url(r'^signup/$', views.profile_create, name='profile_create'),
@@ -13,7 +16,11 @@ urlpatterns = [
     url(r'^user/$', views.UserView, name='user'),
     url(r'^event/(?P<pk>\d+)/$', views.event_comment_create, name='event_detail'),
     url(r'^event/(?P<pk>\d+)/order$', views.event_order, name='event_order'),
+
     url(r'^event/(?P<pk>\d+)/checkin$', views.event_checkin, name='event_checkin'),
+
+    url(r'^ranking/$', views.TopUsers, name='TopUsers'),
+
 ]
 
 if settings.DEBUG:
