@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Check-in!</h1>
+	<p>Checkin to get 500 pixels</p>
+	{% if user.is_authenticated %}
+	  <form method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button type="submit">Checkin</button>
+	  </form>
+	{% endif %}
+{% endblock %}

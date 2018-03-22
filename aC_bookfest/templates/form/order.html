@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Order the ticket</h1>
+	<h3>This will cost you ${{ event.Cost }} pixels</h3>
+	{% if user.is_authenticated %}
+	  <form method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button type="submit">Order</button>
+	  </form>
+	{% else %}
+		<h1>Please Login to order the ticket!</h1>
+	{% endif %}
+{% endblock %}

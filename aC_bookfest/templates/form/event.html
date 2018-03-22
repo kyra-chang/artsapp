@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	<div class="post">
+    	<h1>{{ event.Title }}</h1>
+    	<h3>{{ event.Time }}</h3>
+    	<h3>{{ event.Location }}</h3>
+    	<h3>Held by {{ event.Organizer }}</h3>
+    	<h3>${{ event.Cost }} points</h3>
+    	{% if event.orders.count != None %}
+			<h3>{{ event.orders.count }} people ordered the tickets</h3>
+		{% else %}
+			<h3>Be the first one to order the ticket!</h3>
+		{% endif %}
+
+        <p>{{event.Description}}</p>
+
+    </div>
 	{% if user.is_authenticated %}
+	<a href="{% url 'event_order' pk=event.pk %}">Order</a>
 	  <form method="post" enctype="multipart/form-data">
 	    {% csrf_token %}
 	    {{ form.as_p }}

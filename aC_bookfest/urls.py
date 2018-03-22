@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'^update/(?P<pk>\d+)/$', views.ProfileUpdate.as_view(), name='profile_update'),
     url(r'^user/$', views.UserView, name='user'),
     url(r'^event/(?P<pk>\d+)/$', views.event_comment_create, name='event_detail'),
+    url(r'^event/(?P<pk>\d+)/order$', views.event_order, name='event_order'),
+    #url(r'^event/(?P<pk>\d+)/checkin$', views.event_checkin, name='event_checkin'),
 ]
 
 if settings.DEBUG:

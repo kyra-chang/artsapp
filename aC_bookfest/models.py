@@ -14,10 +14,10 @@ class Event(models.Model):
     Max_order = models.IntegerField(null=False)
 
 class Order(models.Model):  
-    event = models.ForeignKey(Event, null=False, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, related_name='orders', db_column="studentId", on_delete=models.CASCADE)
     order_date = models.DateTimeField(null=False)
-    order_checkin = models.IntegerField()
+    order_checkin = models.IntegerField(null=True)
 
 class Interested(models.Model): 
     user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)

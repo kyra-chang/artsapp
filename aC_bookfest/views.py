@@ -6,7 +6,7 @@ from .forms import CommentForm
 from .models import Comment
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProfileForm
+from .forms import ProfileForm, OrderForm
 from django.db import transaction
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -27,6 +27,44 @@ def home(request):
     events = Event.objects.all()
     return render(request, 'form/home.html', { 'events': events })
 
+# - Kyra 3.22.2018
+# UNDER CONSTRUCTION
+# this method is to checkin
+# def event_checkin(request, pk):
+#     event = get_object_or_404(Event, pk=pk)
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.user = request.user
+#             comment.event = event
+#             comment.created_date = timezone.now()
+#             comment.save()
+#     else:
+#         form = CommentForm()
+#     return render(request, 'form/event.html', {
+#         'form': form, 'event': event
+#     })
+
+# - Kyra 3.22.2018
+# this method is to order the tickets
+def event_order(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user = request.user
+            order.event = event
+            order.order_date = timezone.now()
+            order.save()
+            messages.success(request, 'You ordered the tickets!')
+            return redirect('home')
+    else:
+        form = OrderForm()
+    return render(request, 'form/order.html', {
+        'form': form, 'event': event
+    })
 
 # - Kyra 3.19.2018
 # this method is to upload the pictures and comments for specific events

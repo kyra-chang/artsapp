@@ -1,6 +1,11 @@
 from django import forms
-from .models import Comment
+from .models import Comment, Order
 from .models import Profile
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ()
 
 class CommentForm(forms.ModelForm):
     class Meta:

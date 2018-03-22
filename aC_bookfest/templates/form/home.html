@@ -2,14 +2,17 @@
 
 {% block content %}
 
+
     {% for event in events %}
         <div class="post">
-            <a href="{% url 'event_detail' pk=event.pk %}">Comments: {{ event.comments.count }}</a>
-            <a href="{% url 'event_detail' pk=event.pk %}">Details</a>
+        	<h1><a href="{% url 'event_detail' pk=event.pk %}">{{ event.Title }}</a></h1>
+        	<h3>{{ event.Time }}</h3>
+        	{% if event.orders.count > 0 %}
+        		<h3>{{ event.orders.count }} people ordered the tickets</h3>
+        	{% else %}
+        		<h3>Be the first one to order the ticket!</h3>
+        	{% endif %}
         </div>
     {% endfor %}
-
-
-  <p>Uploaded files:</p>
   
 {% endblock %}
