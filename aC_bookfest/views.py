@@ -3,7 +3,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .forms import CommentForm
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 
 from .models import Event
@@ -11,7 +11,7 @@ from .models import Event
 from .models import Comment
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProfileForm, OrderForm
+from .forms import ProfileForm, OrderForm, DummyForm
 from django.db import transaction
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -33,6 +33,23 @@ def home(request):
     #events = Event.objects.all()
     return render(request, 'form/home.html', { 'latest_event_list': latest_event_list })
 
+# - Kyra 3.22.2018
+# this method is to favorite
+# https://stackoverflow.com/questions/5674968/django-query-to-get-users-favorite-posts
+def event_favorite(request, pk):
+
+    if request.is_ajax() == True:
+        event = get_object_or_404(Event, pk=pk)
+        fav = request.user.profile.favorites
+        if event not in fav.all():
+            fav.add(event)
+            request.user.profile.save()
+        else:
+            fav.remove(event)
+            request.user.profile.save()
+        # else:
+        #     form = DummyForm()
+        return HttpResponse(status=200)
 
 # - Kyra 3.22.2018
 # UNDER CONSTRUCTION

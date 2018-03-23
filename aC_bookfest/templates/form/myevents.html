@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
-
-    
-{% with user.profile.favorites.all as favorites %}
-    {% if latest_event_list %}
-        {% for event in latest_event_list %}
+	{% with user.profile.favorites.all as favorites %}
+		{% for event in favorites %}
             <div class="post">
                 {% if event.Picture.url %}
                     <img src="{{ event.Picture.url }}" alt="{{ event.Title }}" style="height: 100px"/>
@@ -25,9 +21,5 @@
                 {% endif %}
             </div>
         {% endfor %}
-    {% else %}
-        <p>No events are available.</p>
-    {% endif %}
-{% endwith %}
-  
+	{% endwith %}
 {% endblock %}

@@ -91,6 +91,7 @@ class Profile(models.Model):
     )
     # TODO set initial value = 0? or 100?
     points = models.IntegerField(null=True,blank=True,default=0)
+    favorites = models.ManyToManyField(Event, related_name='favorited_by')
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
