@@ -2,64 +2,8 @@
 
 {% block content %}
 
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/regular.css" integrity="sha384-A/oR8MwZKeyJS+Y0tLZ16QIyje/AmPduwrvjeH6NLiLsp4cdE4uRJl8zobWXBm4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
-	
-		<script type="text/javascript">
-		// $(".favo")[0].click(function(e){
-	 //        e.preventDefault()
-	 //        console.log("error")
-	 //        var this_ = $(this)
-	 //        var likeUrl = this_.attr("data-href")
-	 //        if (likeUrl){
-	 //           $.ajax({
-	 //            url: likeUrl,
-	 //            method: "GET",
-	 //            data: {},
-	 //            success: function(data){
-	 //              console.log(data)
-	 //              var newLikes;
-	 //              if (this_.val() == "Favorited"){
-	 //                  this_.text("Favorite")
-	 //              } else {
-	 //                  this_.text("Favorited!")
-	 //              }
-	 //            }, error: function(error){
-	 //              console.log(error)
-	 //              console.log("error")
-	 //            }
-	 //          })
-	 //        }
-       
-  //     	})
-      	function f(e){
-      		var t = $(".fa-heart")[0]
-      		var likeUrl = t.dataset.href
-
-      		e.preventDefault()
-      		console.log(likeUrl)
-
-      		$.ajax({
-	            url: likeUrl,
-	            method: "GET",
-	            data: {},
-	            success: function(data){
-	              if (t.className == "fas fa-heart fa-3x"){
-	                  t.className = "far fa-heart fa-3x"
-	              } else {
-	              	  console.log(t.className)
-	                  t.className = "fas fa-heart fa-3x"
-	              }
-	            }, error: function(error){
-	              console.log(error)
-	              console.log("error")
-	            }
-	          })
-      	}
-	</script>
-	<div class="post">
+{% with user.profile.favorites.all as favorites %}
+	<div class="post" >
     	<h1>{{ event.Title }}</h1>
     	<h3>{{ event.Time }}</h3>
     	<h3>{{ event.Location }}</h3>
@@ -78,7 +22,7 @@
     </div>
 	{% if user.is_authenticated %}
 		
-		{% if event in user.profile.favorites.all %}
+		{% if event in favorites %}
 			<i class="fas fa-heart fa-3x" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
 		{% else %}
 	    	<i class="far fa-heart fa-3x" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
@@ -114,4 +58,5 @@
 	{% empty %}
 	  <p>No comments here yet :(</p>
 	{% endfor %}
+{% endwith %}
 {% endblock %}

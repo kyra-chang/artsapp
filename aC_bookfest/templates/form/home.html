@@ -7,7 +7,7 @@
 {% with user.profile.favorites.all as favorites %}
     {% if latest_event_list %}
         {% for event in latest_event_list %}
-            <div class="post">
+            <div class="post" >
                 {% if event.Picture.url %}
                     <img src="{{ event.Picture.url }}" alt="{{ event.Title }}" style="height: 100px"/>
                 {% endif %}
@@ -19,9 +19,9 @@
                     <h3>Be the first one to order the ticket!</h3>
                 {% endif %}
                 {% if event in favorites %}
-                    <i class="fas fa-heart fa-3x" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
+                    <i class="fas fa-heart fa-3x" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
                 {% else %}
-                    <i class="far fa-heart fa-3x" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
+                    <i class="far fa-heart fa-3x" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
                 {% endif %}
             </div>
         {% endfor %}

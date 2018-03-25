@@ -18,36 +18,6 @@ class Event(models.Model):
     Max_order = models.IntegerField(null=False)
     Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg')
 
-
-class Order(models.Model):  
-    event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=False, related_name='orders', db_column="studentId", on_delete=models.CASCADE)
-    order_date = models.DateTimeField(null=False)
-    order_checkin = models.DateTimeField(null=True)
-
-class Interested(models.Model): 
-    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
-    event = models.ForeignKey(Event, null=False, db_column="eventId", on_delete=models.CASCADE)
-
-def user_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
-    return 'event_{0}/comments/{1}'.format(instance.event.id, filename)
-
-class Comment(models.Model):    
-    event = models.ForeignKey(Event, related_name='comments', null=False, db_column="eventId", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
-    text = models.TextField(max_length=10000, blank=True)
-    photo = models.FileField(upload_to=user_directory_path)
-    created_date = models.DateTimeField(auto_now_add=True)
-
-class Document(models.Model):
-    description = models.CharField(max_length=255, blank=True)
-    document = models.FileField(upload_to=user_directory_path)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
-
-
-
-
 #for the use of the extending User model, please go to this website:
 #https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#extending-the-existing-user-model
 #Sign Up With Profile Model
@@ -92,6 +62,44 @@ class Profile(models.Model):
     # TODO set initial value = 0? or 100?
     points = models.IntegerField(null=True,blank=True,default=0)
     favorites = models.ManyToManyField(Event, related_name='favorited_by')
+    orders = models.ManyToManyField(Event, through='Order')
+
+
+# Kyra 3.24
+# many-to-many through this intermediate model
+# doc: https://docs.djangoproject.com/en/2.0/topics/db/models/#many-to-many-relationships
+# create orders model instance, the data will connect between profile and event in some way
+class Order(models.Model):  
+    event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, null=False, db_column="studentId", on_delete=models.CASCADE)
+    order_date = models.DateTimeField(null=False)
+    order_checkin = models.DateTimeField(null=True)
+
+# Kyra 3.24
+# this class is currently not used
+class Interested(models.Model): 
+    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, null=False, db_column="eventId", on_delete=models.CASCADE)
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
+    return 'event_{0}/comments/{1}'.format(instance.event.id, filename)
+
+class Comment(models.Model):    
+    event = models.ForeignKey(Event, related_name='comments', null=False, db_column="eventId", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+    text = models.TextField(max_length=10000, blank=True)
+    photo = models.FileField(upload_to=user_directory_path)
+    created_date = models.DateTimeField(auto_now_add=True)
+
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to=user_directory_path)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
+
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

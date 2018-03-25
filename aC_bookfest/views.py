@@ -59,7 +59,7 @@ def event_checkin(request, pk):
         form = OrderForm(request.POST)
         if form.is_valid():
             event = get_object_or_404(Event, pk=pk)
-            order = event.orders.filter(user=request.user)[0]
+            order = request.user.profile.orders.filter(Title=event.Title)[0]
             order.order_checkin = timezone.now()
             order.save()
             # TODO verify if the save is success or not
@@ -81,7 +81,7 @@ def event_order(request, pk):
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            order.user = request.user
+            order.profile = request.user.profile
             order.event = event
             order.order_date = timezone.now()
             order.save()
@@ -165,7 +165,8 @@ class ProfileUpdate(UpdateView):
 # - Kyra 3.19.2018
 # This method is just render the related html file for viewing the user dashboard
 def UserView(request):
-    return render(request, 'user/user.html', {
+    events = request.user.profile.favorites.all().union(request.user.profile.orders.all())
+    return render(request, 'user/user.html', { 'events': events
     })
 	
 # MERGED to index by Kyra
