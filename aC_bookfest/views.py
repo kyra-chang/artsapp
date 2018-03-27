@@ -21,6 +21,8 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 
+
+
 # - Kyra 3.19.2018
 # this method is to render index
 def index(request):

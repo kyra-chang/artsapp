@@ -48,10 +48,10 @@
   </head>
   <body>
   	{% if user.is_authenticated %}
-	    <h2 class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small><small>(<a href="{% url 'profile_update' pk=user.profile.id %}">Edit Profile</a>)</small></h2>
+	    <h2 class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'cas_ng_logout' %}">Log out</a>)</small><small>(<a href="{% url 'profile_update' pk=user.profile.id %}">Edit Profile</a>)</small></h2>
 
   	{% else %}
-  	    <a href="{% url 'login' %}" class="top-menu">Login</a>
+  	    <a href="{% url 'cas_ng_login' %}" class="top-menu">Login</a>
   	    <a href="{% url 'profile_create' %}" class="top-menu">Sign Up</a>
   	    
   	{% endif %}

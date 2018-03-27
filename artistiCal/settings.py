@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cas_ng',
     'aC_bookfest'
 ]
 
@@ -104,6 +105,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'django_cas_ng.backends.CASBackend',
+)
+CAS_SERVER_URL = 'https://auth.berkeley.edu/cas/'
 
 AUTH_USER_MODEL = 'auth.User'
 LOGIN_REDIRECT_URL = '/'
