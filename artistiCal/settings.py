@@ -29,7 +29,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '.compute-1.amazonaws.com', # allows viewing of instances directly
-    '.elasticbeanstalk.com' ]
+    '.elasticbeanstalk.com',
+    'berkeley.edu' ]
 
 
 # Application definition
