@@ -7,10 +7,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 	  #url(r'^$', views.index, name='home'), (home page url)
-    url(r'^$', views.index, name='index'),
+    #url(r'^$', views.index, name='index'),
     
     
-    url(r'^home/$', views.home, name='home'),
+    url(r'^$', views.home, name='home'),
     url(r'^free/$', views.free, name='free'),
     #url(r'^uploads/$', views.model_form_upload, name='model_form_upload'),
     url(r'^signup/$', views.profile_create, name='profile_create'),
