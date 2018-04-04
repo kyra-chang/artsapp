@@ -11,6 +11,7 @@ urlpatterns = [
     
     
     url(r'^home/$', views.home, name='home'),
+    url(r'^free/$', views.free, name='free'),
     #url(r'^uploads/$', views.model_form_upload, name='model_form_upload'),
     url(r'^signup/$', views.profile_create, name='profile_create'),
     url(r'^update/(?P<pk>\d+)/$', views.ProfileUpdate.as_view(), name='profile_update'),

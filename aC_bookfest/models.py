@@ -10,10 +10,13 @@ def event_pic_path(instance, filename):
 
 class Event(models.Model):
     Title = models.CharField(max_length=255, blank=True)
+    Type = models.CharField(max_length=100)
+    # either "event" or "free" admission for berkeley students
+    Website = models.CharField(max_length=255, blank=True)
     Organizer = models.CharField(max_length=100)
     Location = models.CharField(max_length=255, blank=True)
-    Time = models.DateTimeField(auto_now_add=True)
-    Description = models.CharField(max_length=10000, blank=True)
+    Time = models.CharField(max_length=100)
+    Description = models.TextField(max_length=10000, blank=True)
     Cost = models.IntegerField()
     Max_order = models.IntegerField(null=False)
     Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg')

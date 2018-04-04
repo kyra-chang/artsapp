@@ -31,9 +31,13 @@ def index(request):
 # Done by Alex
 # Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
 def home(request):
-    latest_event_list = Event.objects.order_by('Time')[:5]
-    #events = Event.objects.all()
+    latest_event_list = Event.objects.filter(Type='event').order_by('Time')[:5]
     return render(request, 'frontend/index.html', { 'latest_event_list': latest_event_list })
+
+def free(request):
+    free_list = Event.objects.filter(Type='free')
+    return render(request, 'frontend/free.html', { 'free_list': free_list })
+
 
 # - Kyra 3.22.2018
 # this method is to favorite
@@ -101,6 +105,7 @@ def event_order(request, pk):
         'form': form, 'event': event
     })
 
+
 # - Kyra 3.19.2018
 # this method is to upload the pictures and comments for specific events
 def event_comment_create(request, pk):
@@ -116,7 +121,10 @@ def event_comment_create(request, pk):
             # TODO verify if the save is success or not
     else:
         form = CommentForm()
-    return render(request, 'form/event.html', {
+    # return render(request, 'form/event.html', {
+    #     'form': form, 'event': event
+    # })
+    return render(request, 'frontend/event.html', {
         'form': form, 'event': event
     })
 

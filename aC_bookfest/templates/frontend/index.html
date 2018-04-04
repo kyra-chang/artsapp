@@ -3,14 +3,14 @@
 
 {% block content %}
 <!-- Events -->
-
+<div class="rest">
 <div class="angular-content" ng-app="myApp" ng-controller="myController">
 
 
 	{% with user.profile.favorites.all as favorites %}
 	    {% if latest_event_list %}
 	        {% for event in latest_event_list %}
-	            <div class="event-container" ng-repeat="item in info" ng-if="item.title" ng-if="item.location" ng-if="item.tickets" ng-if="item.interested" ng-if="item.link">
+	            <div class="event-container" >
 	            	<a href="{% url 'event_detail' pk=event.pk %}">
 	                {% if event.Picture.url %}
 	                <div class="event-image">
@@ -38,5 +38,6 @@
 	    {% endif %}
 	{% endwith %}
 
+</div>
 </div>
 {% endblock %}

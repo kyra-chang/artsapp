@@ -1,113 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Berkeley Arts + Design</title>
 
-	<!-- Linking CSS -->
-	<link rel="stylesheet" href="assets/css/event_style.css">
+{% extends 'frontend/base.html' %}
 
-	<!-- Importing jQuery -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-    </script>
-
-    <!-- Importing Angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-
-	<!-- Importing Open Sans -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-
-	<!-- Importing Bootstrap -->
-
-	<!-- Bootstrap uses HTML5 -->
-	<meta charset="utf-8">
-
-	<!-- Bootstrap is mobile-first -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-	<!-- jQuery library -->
-	<!-- won't need this if you only use CSS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</head>
-<body>
-
-    <!-- Page Container -->
-	<div id="page-container" class="container-fluid">
-
-		<!-- Nav Bar -->
-		<div id="nav-bar" class="container-fluid">
-			
-			<!-- Sidebar Hamburger Icon (code inspired by W3Schools) -->
-		    <div id="sidebar-button" onclick="myFunction(this)">
-		    	<div class="bar1"></div>
-		    	<div class="bar2"></div>
-		    	<div class="bar3"></div>
-		    </div>
-
-		    <!-- Sidebar -->
-		    <nav class="sidebar-container">
-		        <ul>
-		        	<li class="sidebar-item"><a href="index.html">Home</a></li>
-		            <li class="sidebar-item">About</li>
-		            <li class="sidebar-item">My Profile</li>
-		            <li class="sidebar-item">Contact</li>
-		            <li class="sidebar-item"><a href="free.html">Free w/ Cal ID</a></li>
-		            <li class="sidebar-item">CalNet Login</li>
-		        </ul>
-		    </nav>
-
-		    <!-- Text -->
-		    <div id="title" class="container">
-		    	<div class="text">Berkeley A+D</div>
-		    </div>
-
-		</div>
-
-		<div class="rest">
-
-			<!-- Event -->
-			<div id="event">
-				<div id="event-title">Berkeley Art Museum and Pacific Film Archive (BAMPFA)</div>
-				<div id="event-image">
-					<img src="https://static.dezeen.com/uploads/2016/01/UC-Berkeley-Art-Museum-Pacific-Film-Archive_dezeen_1568_5.jpg">
-					<div id="event-location">2155 Center St, Berkeley, CA 94720</div>
-				</div>
-				<div id="button-container">
-					<div class="button"><a>Claim Tickets</a></div>
-					<div class="button">Interested</div>
-					<div class="button">Check In</div>
-				</div>
-				<div id="event-descrip">
-					Spicy jalapeno bacon ipsum dolor amet alcatra tenderloin sirloin, turkey leberkas burgdoggen buffalo kevin cow biltong porchetta. Pancetta prosciutto venison jowl meatball flank. Tongue shoulder pancetta, drumstick pork filet mignon short loin brisket capicola ham hock. Ribeye leberkas pork loin, sausage buffalo brisket ball tip boudin fatback kielbasa. Drumstick beef ribs frankfurter, hamburger strip steak kielbasa doner brisket meatball chuck. Sausage capicola kevin corned beef chuck shankle prosciutto porchetta doner. Cupim bresaola fatback, ribeye pork belly pork chop tongue biltong chuck. Ribeye picanha spare ribs buffalo porchetta cow brisket turducken leberkas landjaeger ham andouille ball tip alcatra chuck. Tenderloin bresaola drumstick shoulder corned beef frankfurter kevin pork belly picanha sirloin. 
-				</div>
-				<div id="event-website">Visit website <a href="https://bampfa.org/" target="_blank">here</a>.</div>
-				<div id="back-button"><a href="index.html">< Back</a></div>
-			</div>
-
-
-			<!-- Bottom -->
-			<div id="bottom-info">
-				<div id="bottom-text">
-					Berkeley Arts + Design
-				</div>
-				<div id="bottom-email">
-					artsdesign.berkeley.edu
-				</div>
-			</div>
-
-		</div>
-
+{% block content %}
+<div class="rest">
+{% with user.profile.favorites.all as favorites %}
+			<!-- Event -->			
+<div id="event">
+	<div id="event-title">{{ event.Title }}</div>
+	<div id="event-image">
+		<img src="{{ event.Picture.url }}">
+		<div id="event-location">{{ event.Location }}</div>
 	</div>
-
-
-	<!-- Linking JS -->
-	<script src="assets/js/event_script.js"></script>
-
-</body>
-</html>
+	<div id="button-container">
+		<div class="button">
+		{% if event.Max_order != 0 %}
+			<a href="{% url 'event_order' pk=event.pk %}">Claim Tickets</a>
+		{% else %}
+			<h3>No tickets left :'(</h3>
+			<h3>Signup in the waitlist</h3>
+		{% endif %}
+		</div>
+		<div class="button">Interested</div>
+		<div class="button"><a href="{% url 'event_checkin' pk=event.pk %}">Check In</a></div>
+	</div>
+	<div id="event-descrip">
+		{{event.Description}}
+	</div>
+	<div id="event-website">Visit website <a href="{{ event.Website }}" target="_blank">here</a>.</div>
+	<div id="back-button"><a href="{% url 'home' %}">< Back</a></div>
+</div>
+</div>
+{% endwith %}
+{% endblock %}
