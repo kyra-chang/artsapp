@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Berkeley Arts + Design</title>
+
+	<!-- Linking CSS -->
+	<link rel="stylesheet" href="assets/css/home_style.css">
+
+	<!-- Importing jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
+    </script>
+
+    <!-- Importing Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+	<!-- Importing Open Sans -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+	<!-- Importing Bootstrap -->
+
+	<!-- Bootstrap uses HTML5 -->
+	<meta charset="utf-8">
+
+	<!-- Bootstrap is mobile-first -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<!-- won't need this if you only use CSS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    <!-- Page Container -->
+	<div id="page-container" class="container-fluid">
+
+		<!-- Nav Bar -->
+		<div id="nav-bar" class="container-fluid">
+			
+			<!-- Sidebar Hamburger Icon (code inspired by W3Schools) -->
+		    <div id="sidebar-button" onclick="myFunction(this)">
+		    	<div class="bar1"></div>
+		    	<div class="bar2"></div>
+		    	<div class="bar3"></div>
+		    </div>
+
+		    <!-- Sidebar -->
+		    <nav class="sidebar-container">
+		        <ul>
+		        	<li class="sidebar-item"><a href="index.html">Home</a></li>
+		            <li class="sidebar-item">About</li>
+		            <li class="sidebar-item">My Profile</li>
+		            <li class="sidebar-item">Contact</li>
+		            <li class="sidebar-item">Free w/ Cal ID</li>
+		            <li class="sidebar-item">CalNet Login</li>
+		        </ul>
+		    </nav>
+
+		    <!-- Text -->
+		    <div id="title" class="container">
+		    	<div class="text">Berkeley A+D</div>
+		    </div>
+
+		</div>
+
+		<div class="rest">
+
+			<!-- Title -->
+			<div id="spotlight-container" class="container-fluid">
+				<div id="spotlight-image" class="container-fluid">
+					<img src="https://s-media-cache-ak0.pinimg.com/originals/c0/c3/68/c0c3680e0ad304b8072041cd6a6ca25f.jpg">
+				</div>
+				<div id="spotlight-text">
+					Free with Cal ID
+				</div>
+			</div>
+
+			<!-- Events -->
+
+			<div class="angular-content" ng-app="myApp" ng-controller="myController">
+
+				<div class="event-container" ng-repeat="item in info" ng-if="item.title" ng-if="item.location" ng-if="item.link">
+					<a href={{item.link}}>
+					<div class="event-image">
+						<img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png"> 
+					</div>
+					<!-- Angular code taken from https://stackoverflow.com/questions/12179455/how-to-assign-alternate-class-to-rows-in-angular-js -->
+					<div class="event-info" ng-class="'color' + ($index % 3)">
+						<div class="event-title">{{item.title}}</div>
+						<div class="event-location">{{item.location}}</div>
+					</div>
+					</a>
+				</div>
+
+			</div>
+
+			<!-- Bottom -->
+			<div id="bottom-info">
+				<div id="bottom-text">
+					Berkeley Arts + Design
+				</div>
+				<div id="bottom-email">
+					artsdesign.berkeley.edu
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- Linking JS -->
+	<script src="assets/js/free_script.js"></script>
+
+</body>
+</html>

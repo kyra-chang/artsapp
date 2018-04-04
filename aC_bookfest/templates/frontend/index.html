@@ -1,0 +1,42 @@
+
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<!-- Events -->
+
+<div class="angular-content" ng-app="myApp" ng-controller="myController">
+
+
+	{% with user.profile.favorites.all as favorites %}
+	    {% if latest_event_list %}
+	        {% for event in latest_event_list %}
+	            <div class="event-container" ng-repeat="item in info" ng-if="item.title" ng-if="item.location" ng-if="item.tickets" ng-if="item.interested" ng-if="item.link">
+	            	<a href="{% url 'event_detail' pk=event.pk %}">
+	                {% if event.Picture.url %}
+	                <div class="event-image">
+	                    <img src="{{ event.Picture.url }}" alt="{{ event.Title }}"/>
+	                    <!-- <img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png">  -->
+	                </div>
+	                {% endif %}
+	                <div class="event-info" ng-class="'color' + ($index % 3)">
+						<div class="event-title">{{ event.title }}</div>
+						<div class="event-location">{{ event.Location }}</div>
+						<div class="event-tix">{{ event.Max_order }} Tickets</div>
+						<div class="event-interest">{{ event.favorited_by.count }} Interested</div>
+					</div>
+
+<!-- 	                {% if event in favorites %}
+	                    <i class="fas fa-heart fa-3x" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
+	                {% else %}
+	                    <i class="far fa-heart fa-3x" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
+	                {% endif %} -->
+	            	</a>
+	            </div>
+	        {% endfor %}
+	    {% else %}
+	        <p>No events are available.</p>
+	    {% endif %}
+	{% endwith %}
+
+</div>
+{% endblock %}

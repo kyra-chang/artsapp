@@ -33,7 +33,7 @@ def index(request):
 def home(request):
     latest_event_list = Event.objects.order_by('Time')[:5]
     #events = Event.objects.all()
-    return render(request, 'form/home.html', { 'latest_event_list': latest_event_list })
+    return render(request, 'frontend/index.html', { 'latest_event_list': latest_event_list })
 
 # - Kyra 3.22.2018
 # this method is to favorite
