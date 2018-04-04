@@ -17,7 +17,8 @@ class Event(models.Model):
     Location = models.CharField(max_length=255, blank=True)
     Time = models.CharField(max_length=100)
     Description = models.TextField(max_length=10000, blank=True)
-    Cost = models.IntegerField()
+    #Cost = models.IntegerField()
+    OfferType = models.CharField(max_length=100, blank=True)
     Max_order = models.IntegerField(null=False)
     Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg')
 
