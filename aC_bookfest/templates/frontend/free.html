@@ -16,7 +16,7 @@
             </div>
         {% endif %}
 		<!-- Angular code taken from https://stackoverflow.com/questions/12179455/how-to-assign-alternate-class-to-rows-in-angular-js -->
-		<div class="event-info" ng-class="'color' + ($index % 3)">
+		<div class="event-info" ng-class="{% cycle 'color0' 'color1' 'color2' %}">
 			<div class="event-title">{{ event.title }}</div>
 			<div class="event-location">{{ event.Location }}</div>
 		</div>
