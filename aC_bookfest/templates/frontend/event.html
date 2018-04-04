@@ -20,7 +20,11 @@
 			<h3>Signup in the waitlist</h3>
 		{% endif %}
 		</div>
-		<div class="button">Interested</div>
+		{% if event in favorites %}
+            <i class="fas fa-heart" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
+        {% else %}
+            <i class="far fa-heart" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
+        {% endif %}
 		<div class="button"><a href="{% url 'event_checkin' pk=event.pk %}">Check In</a></div>
 	</div>
 	<div id="event-descrip">

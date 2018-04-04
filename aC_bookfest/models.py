@@ -13,7 +13,7 @@ class Event(models.Model):
     Type = models.CharField(max_length=100)
     # either "event" or "free" admission for berkeley students
     Website = models.CharField(max_length=255, blank=True)
-    Organizer = models.CharField(max_length=100)
+    #Organizer = models.CharField(max_length=100)
     Location = models.CharField(max_length=255, blank=True)
     Time = models.CharField(max_length=100)
     Description = models.TextField(max_length=10000, blank=True)

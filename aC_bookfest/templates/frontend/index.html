@@ -18,11 +18,12 @@
 	                    <!-- <img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png">  -->
 	                </div>
 	                {% endif %}
-	                <div class="event-info {% cycle 'color0' 'color1' 'color2' %}" ng-class="{% cycle 'color0' 'color1' 'color2' %}">
-						<div class="event-title">{{ event.title }}</div>
+	                <div class="event-info {% cycle 'color0' 'color1' 'color2' %}" >
+						<div class="event-title">{{ event.Title }}</div>
 						<div class="event-location">{{ event.Location }}</div>
 						<div class="event-tix">{{ event.Max_order }} Tickets</div>
-						<div class="event-interest">{{ event.favorited_by.count }} Interested</div>
+						<!-- <div class="event-interest">{{ event.favorited_by.count }} Interested</div> -->
+						<div class="event-interest">{{ event.OfferType }}</div>
 					</div>
 
 <!-- 	                {% if event in favorites %}
