@@ -1,6 +1,6 @@
 
 {% extends 'frontend/base.html' %}
-
+{% load static %}
 <!-- Spotlight -->
 <div id="spotlight-container" class="container-fluid">
 	<div id="spotlight-image" class="container-fluid">
@@ -17,7 +17,7 @@
 <div class="angular-content" ng-app="myApp" ng-controller="myController">
 
 
-	{% with user.profile.favorites.all as favorites %}
+	{% with user.Profile.favorites.all as favorites %}
 	    {% if latest_event_list %}
 	        {% for event in latest_event_list %}
 	            <div class="event-container" >
