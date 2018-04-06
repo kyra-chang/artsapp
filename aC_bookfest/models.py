@@ -31,7 +31,7 @@ class Event(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(
         User,on_delete=models.CASCADE,
-        related_name='profile',
+        related_name='Profile',
     )
     FRESHMAN = 'FR'
     SOPHOMORE = 'SO'
@@ -72,10 +72,10 @@ class Profile(models.Model):
 # Kyra 3.24
 # many-to-many through this intermediate model
 # doc: https://docs.djangoproject.com/en/2.0/topics/db/models/#many-to-many-relationships
-# create orders model instance, the data will connect between profile and event in some way
+# create orders model instance, the data will connect between Profile and event in some way
 class Order(models.Model):  
     event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, null=False, db_column="studentId", on_delete=models.CASCADE)
+    Profile = models.ForeignKey(Profile, null=False, db_column="studentId", on_delete=models.CASCADE)
     order_date = models.DateTimeField(null=False)
     order_checkin = models.DateTimeField(null=True)
 
@@ -106,10 +106,10 @@ class Document(models.Model):
 
 
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_user_Profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+def save_user_Profile(sender, instance, **kwargs):
+    instance.Profile.save()

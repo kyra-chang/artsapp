@@ -1,6 +1,9 @@
 
 {% extends 'frontend/base.html' %}
 {% load static %}
+
+
+{% block content %}
 <!-- Spotlight -->
 <div id="spotlight-container" class="container-fluid">
 	<div id="spotlight-image" class="container-fluid">
@@ -10,8 +13,6 @@
 		Arts + Design
 	</div>
 </div>
-
-{% block content %}
 <!-- Events -->
 <div class="rest">
 <div class="angular-content" ng-app="myApp" ng-controller="myController">
