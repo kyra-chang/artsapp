@@ -40,12 +40,11 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-        function f(t){
+        function f(event,t){
 
           var likeUrl = t.dataset.href
 
           event.preventDefault()
-          console.log(likeUrl)
 
           $.ajax({
               url: likeUrl,
