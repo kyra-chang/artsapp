@@ -40,10 +40,9 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-        function f(event){
-          console.log(event)
-          var t = event.target
-          var likeUrl = t.dataset.href
+        function f(this){
+
+          var likeUrl = this.dataset.href
 
           event.preventDefault()
           console.log(likeUrl)
@@ -53,11 +52,11 @@
               method: "GET",
               data: {},
               success: function(data){
-                if (t.className == "fas fa-heart fa-2x"){
-                    t.className = "far fa-heart fa-2x"
+                if (this.className == "fas fa-heart fa-2x"){
+                    this.className = "far fa-heart fa-2x"
                 } else {
                     console.log(t.className)
-                    t.className = "fas fa-heart fa-2x"
+                    this.className = "fas fa-heart fa-2x"
                 }
               }, error: function(error){
                 console.log(error)
