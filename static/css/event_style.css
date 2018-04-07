@@ -318,6 +318,15 @@
 	}*/
 	.fa-heart{
 		text-align: center;
+		text-decoration: none;
+		text-align: center;
+		color: white;
+		padding: 15px 20px;
+		text-decoration: none;
+		width: 100px;
+		margin: 0 auto;
+		margin-top: 20px;
+		margin-bottom: 20px;
 	}
 
 
