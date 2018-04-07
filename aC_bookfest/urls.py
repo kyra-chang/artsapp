@@ -16,7 +16,7 @@ urlpatterns = [
     # url(r'^accounts/login$', views.login, name='cas_ng_login'),
     # url(r'^accounts/logout$', views.logout, name='cas_ng_logout'),
     #url(r'^uploads/$', views.model_form_upload, name='model_form_upload'),
-    url(r'^signup/$', views.profile_create, name='profile_create'),
+    # url(r'^signup/$', views.profile_create, name='profile_create'),
     url(r'^update/(?P<pk>\d+)/$', views.ProfileUpdate.as_view(), name='profile_update'),
     url(r'^user/$', views.UserView, name='user'),
 
