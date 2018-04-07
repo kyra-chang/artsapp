@@ -316,11 +316,8 @@
 		background-color: rgb(83, 98, 111);
 		border-radius: 8%;
 	}*/
-	.fa-heart{
+	.heart{
 		text-align: center;
-		text-decoration: none;
-		text-align: center;
-		color: white;
 		text-decoration: none;
 		width: 100px;
 		margin: 0 auto;
