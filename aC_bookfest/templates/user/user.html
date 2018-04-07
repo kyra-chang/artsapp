@@ -2,13 +2,12 @@
 
 {% block content %}
 	<h2>Profile:</h2>
-    <h3>Year: {{ user.profile.year }}</h3>
-    <h3>Major: {{ user.profile.major }}</h3>
-    <h3>Age: {{ user.profile.age }}</h3>
-    <h3>Gender: {{ user.profile.gender }}</h3>
-    <h3>Points: {{ user.profile.points }}</h3>
+    <h3>Year: {{ user.Profile.get_year_display }}</h3>
+    <h3>Major: {{ user.Profile.major }}</h3>
+    <h3>Age: {{ user.Profile.age }}</h3>
+    <h3>Points: {{ user.Profile.points }}</h3>
     <h2>My Events</h2>
-    {% with user.profile.favorites.all as favorites %}
+    {% with user.Profile.favorites.all as favorites %}
 		{% for event in events %}
 	        <div class="post" style="margin: 30px">
 	            {% if event.Picture.url %}

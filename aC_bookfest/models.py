@@ -45,24 +45,24 @@ class Profile(models.Model):
         (SENIOR, 'Senior'),
         (GRAD, 'Graduate')
     )
-    M = 'M'
-    F = 'F'
-    O = 'O'
-    GENDER_CHOICES = (
-        (M, 'Male'),
-        (F, 'Female'),
-        (O, 'Other')
-    )
+    # M = 'M'
+    # F = 'F'
+    # O = 'O'
+    # GENDER_CHOICES = (
+    #     (M, 'Male'),
+    #     (F, 'Female'),
+    #     (O, 'Other')
+    # )
     year = models.CharField(
         max_length=2, blank=True,
         choices=YEAR_CHOICES,null=True,
     )
     major = models.CharField(max_length=50,null=True,blank=True,)
     age = models.IntegerField(null=True,blank=True,)
-    gender = models.CharField(
-        max_length=1,null=True,blank=True,
-        choices=GENDER_CHOICES,
-    )
+    # gender = models.CharField(
+    #     max_length=1,null=True,blank=True,
+    #     choices=GENDER_CHOICES,
+    # )
     # TODO set initial value = 0? or 100?
     points = models.IntegerField(null=True,blank=True,default=0)
     favorites = models.ManyToManyField(Event, related_name='favorited_by')

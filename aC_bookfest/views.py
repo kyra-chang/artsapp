@@ -21,6 +21,32 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 
+from django.views.decorators.csrf import csrf_exempt
+from django_cas_ng import views as baseviews
+
+@csrf_exempt
+def login(request, **kwargs):
+    return profile_create(request, baseviews.login(request, **kwargs))
+
+
+def logout(request, **kwargs):
+    return baseviews.logout(request, **kwargs)
+
+#https://stackoverflow.com/questions/30290503/django-first-time-login-detection-with-django-allauth
+def profile_create(request, response):
+    threshold = 90  # seconds
+
+    is_first_time = False
+    if request.user.last_login:
+        is_first_time = (request.user.last_login - request.user.date_joined).seconds < threshold
+
+    if request.user.last_login is None or is_first_time:
+        profile = Profile.objects.create(user=request.user)
+        profile.save()
+        request.user.save()
+
+    return response
+
 
 
 # - Kyra 3.19.2018
@@ -135,6 +161,7 @@ def event_comment_create(request, pk):
 
 # - Kyra 3.19.2018
 # this method is for creating the user and its related Profile after submitting the form
+"""
 @transaction.atomic
 def profile_create(request):
     if request.method == 'POST':
@@ -162,6 +189,7 @@ def profile_create(request):
         'user_form': user_form,
         'Profile_form': Profile_form
     })
+"""
 
 # - Kyra 3.19.2018
 # this class is for updating the Profile after submitting the form
