@@ -28,7 +28,7 @@
 		<div class="button"><a href="{% url 'event_checkin' pk=event.pk %}">Check In</a></div>
 	</div>
 	<div id="event-descrip">
-		{{event.Description}}
+		{{event.Description|linebreaks }}
 	</div>
 	<div id="event-website">Visit website <a href="{{ event.Website }}" target="_blank">here</a>.</div>
 	<div id="back-button"><a href="{% url 'home' %}">< Back</a></div>
