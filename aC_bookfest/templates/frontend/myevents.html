@@ -1,9 +1,13 @@
+
+{% extends 'frontend/base.html' %}
+
+{% block content %}
 <div class="angular-content" ng-app="myApp" ng-controller="myController">
 
 
-	{% with user.Profile.favorites.all as favorites %}
-		{% if favorites %}
-			{% for event in favorites %}
+
+		{% if events %}
+			{% for event in events %}
 				<div class="event-container" >
 					<a href="{% url 'event_detail' pk=event.pk %}">
 					{% if event.Picture.url %}
@@ -31,6 +35,8 @@
 	    {% else %}
 	        <p>You have not added any events to your favorites.</p>
 	    {% endif %}
-	{% endwith %}
+
 
 </div>
+
+{% endblock %}

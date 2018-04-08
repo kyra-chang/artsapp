@@ -188,9 +188,9 @@ class ProfileUpdate(UpdateView):
 
 # - Kyra 3.19.2018
 # This method is just render the related html file for viewing the user dashboard
-def UserView(request):
+def user(request):
     events = request.user.Profile.favorites.all().union(request.user.Profile.orders.all())
-    return render(request, 'user/user.html', { 'events': events
+    return render(request, 'frontend/myevents.html', { 'events': events
     })
 	
 # MERGED to index by Kyra
