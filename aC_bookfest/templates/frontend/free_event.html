@@ -2,7 +2,7 @@
 {% extends 'frontend/base.html' %}
 
 {% block content %}
-<div class="rest">
+
 
 <!-- Event -->
 <div id="event">
@@ -12,13 +12,11 @@
 		<div id="event-location">{{ event.Location }}</div>
 	</div>
 	<div id="event-descrip">
-		{{event.Description}}
+		{{event.Description|linebreaks }}
 	</div>
-<!-- 	<div id="event-website">Visit website <a href="https://bampfa.org/" target="_blank">here</a>.</div>
-	<div id="back-button"><a href="free.html">< Back</a></div> -->
 	<div id="event-website">Visit website <a href="{{ event.Website }}" target="_blank">here</a>.</div>
-	<div id="back-button"><a href="{% url 'home' %}">< Back</a></div>
+	<div id="back-button"><a href="{% url 'free' %}">< Back</a></div>
 </div>
 
-</div>
+
 {% endblock %}

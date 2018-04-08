@@ -10,17 +10,17 @@ def event_pic_path(instance, filename):
 
 class Event(models.Model):
     Title = models.CharField(max_length=255, blank=True)
-    Type = models.CharField(max_length=100)
+    Type = models.CharField(max_length=100, blank=True)
     # either "event" or "free" admission for berkeley students
     Website = models.CharField(max_length=255, blank=True)
     #Organizer = models.CharField(max_length=100)
     Location = models.CharField(max_length=255, blank=True)
-    Time = models.CharField(max_length=100)
+    Time = models.CharField(max_length=100, blank=True)
     Description = models.TextField(max_length=10000, blank=True)
     #Cost = models.IntegerField()
     OfferType = models.CharField(max_length=100, blank=True)
-    Max_order = models.IntegerField(null=False)
-    Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg')
+    Max_order = models.IntegerField(null=True,blank=True)
+    Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg', blank=True)
 
 #for the use of the extending User model, please go to this website:
 #https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#extending-the-existing-user-model
@@ -45,24 +45,24 @@ class Profile(models.Model):
         (SENIOR, 'Senior'),
         (GRAD, 'Graduate')
     )
-    M = 'M'
-    F = 'F'
-    O = 'O'
-    GENDER_CHOICES = (
-        (M, 'Male'),
-        (F, 'Female'),
-        (O, 'Other')
-    )
+    # M = 'M'
+    # F = 'F'
+    # O = 'O'
+    # GENDER_CHOICES = (
+    #     (M, 'Male'),
+    #     (F, 'Female'),
+    #     (O, 'Other')
+    # )
     year = models.CharField(
         max_length=2, blank=True,
         choices=YEAR_CHOICES,null=True,
     )
     major = models.CharField(max_length=50,null=True,blank=True,)
     age = models.IntegerField(null=True,blank=True,)
-    gender = models.CharField(
-        max_length=1,null=True,blank=True,
-        choices=GENDER_CHOICES,
-    )
+    # gender = models.CharField(
+    #     max_length=1,null=True,blank=True,
+    #     choices=GENDER_CHOICES,
+    # )
     # TODO set initial value = 0? or 100?
     points = models.IntegerField(null=True,blank=True,default=0)
     favorites = models.ManyToManyField(Event, related_name='favorited_by')

@@ -23,6 +23,9 @@ from django.utils import timezone
 
 
 
+def claim(request):
+    return render(request, 'frontend/claim_tickets.html', {})
+
 # - Kyra 3.19.2018
 # this method is to render index
 def index(request):
@@ -135,6 +138,7 @@ def event_comment_create(request, pk):
 
 # - Kyra 3.19.2018
 # this method is for creating the user and its related Profile after submitting the form
+"""
 @transaction.atomic
 def profile_create(request):
     if request.method == 'POST':
@@ -162,6 +166,7 @@ def profile_create(request):
         'user_form': user_form,
         'Profile_form': Profile_form
     })
+"""
 
 # - Kyra 3.19.2018
 # this class is for updating the Profile after submitting the form
