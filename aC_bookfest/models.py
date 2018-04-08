@@ -10,17 +10,17 @@ def event_pic_path(instance, filename):
 
 class Event(models.Model):
     Title = models.CharField(max_length=255, blank=True)
-    Type = models.CharField(max_length=100)
+    Type = models.CharField(max_length=100, blank=True)
     # either "event" or "free" admission for berkeley students
     Website = models.CharField(max_length=255, blank=True)
     #Organizer = models.CharField(max_length=100)
     Location = models.CharField(max_length=255, blank=True)
-    Time = models.CharField(max_length=100)
+    Time = models.CharField(max_length=100, blank=True)
     Description = models.TextField(max_length=10000, blank=True)
     #Cost = models.IntegerField()
     OfferType = models.CharField(max_length=100, blank=True)
-    Max_order = models.IntegerField(null=False)
-    Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg')
+    Max_order = models.IntegerField(null=False, blank=True)
+    Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg', blank=True)
 
 #for the use of the extending User model, please go to this website:
 #https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#extending-the-existing-user-model
