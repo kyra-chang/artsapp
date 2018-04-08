@@ -51,13 +51,7 @@
 	/* End of reset.css */
 
 	/*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292 */
-	html {
-		animation: fadeIn 1s ease forwards;
-	}
 
-	html.fadeSiteOut {
-		animation: fadeOut 1s ease forwards;
-	}
 
 	body {
 		margin:0 ! important;
@@ -93,23 +87,7 @@
 /*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292 */
 /* Keyframes */
 	
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
 
-	@keyframes fadeOut {
-		from {
-			opacity: 1;
-		}
-		to {
-			opacity: 0;
-		}
-	}
 
 
 	/*[aos="fade-up"] {
