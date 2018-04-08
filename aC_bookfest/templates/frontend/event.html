@@ -38,7 +38,10 @@
 	<div id="event-title">{{ event.Title }}</div>
 	<div id="event-image">
 		<img src="{{ event.Picture.url }}">
+		<div id="event-location">{{ event.Time }}</div>
 		<div id="event-location">{{ event.Location }}</div>
+		<div id="event-location">{{ event.Max_order }}</div>
+		<div id="event-location">{{ event.OfferType }}</div>
 	</div>
 	{% if user.is_authenticated %}
 	<div id="button-container">
