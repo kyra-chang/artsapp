@@ -87,10 +87,9 @@
 					<li class="sidebar-item"><a href="{% url 'free' %}">Free w/ Cal ID</a></li>
 		        	<li class="sidebar-item"><a href="{% url 'home' %}">Home</a></li>
 		            <li class="sidebar-item"><a href="{% url 'about' %}">About</a></li>
-		            <li class="sidebar-item"><a href="{% url 'user' pk=profile.pk %}">My Profile</a></li>
-		            <li class="sidebar-item"><a href="{% url 'free' pk=event.pk %}">Contact</a></li>
-		            <li class="sidebar-item"><a href="{% url 'cas_ng_login' pk=profile.pk %}">CalNet Login</a></li>
-		            <li class="sidebar-item"><a href="{% url 'cas_ng_logout' pk=profile.pk %}">Sign Out</a></li>
+		            <li class="sidebar-item"><a href="{% url 'user' %}">My Profile</a></li>
+		            <li class="sidebar-item"><a href="{% url 'cas_ng_login' %}">CalNet Login</a></li>
+		            <li class="sidebar-item"><a href="{% url 'cas_ng_logout' %}">Sign Out</a></li>
 		        </ul>
 		    </nav>
 

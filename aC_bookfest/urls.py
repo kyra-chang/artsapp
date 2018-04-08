@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^home/$', views.testhome, name='testhome'),
     url(r'^free/$', views.free, name='free'),
+    url(r'^about/$', views.about, name='about'),
+
  
     #url(r'^uploads/$', views.model_form_upload, name='model_form_upload'),
     # url(r'^signup/$', views.profile_create, name='profile_create'),

@@ -26,6 +26,10 @@ from django.utils import timezone
 def claim(request):
     return render(request, 'frontend/claim_tickets.html', {})
 
+
+def about(request):
+    return render(request, 'frontend/about.html', {})
+
 # - Kyra 3.19.2018
 # this method is to render index
 def index(request):
