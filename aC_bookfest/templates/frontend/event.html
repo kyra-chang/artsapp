@@ -40,7 +40,7 @@
 		<img src="{{ event.Picture.url }}">
 		<div id="event-location">{{ event.Location }}</div>
 	</div>
-	{% if user.is_authenticated %}
+
 	<div id="button-container">
 		<div id="claim" class="button">
 		{% if event.Max_order != 0 %}
@@ -62,9 +62,7 @@
         </div>
 		<div class="button"><a href="{% url 'event_checkin' pk=event.pk %}">Check In</a></div>
 	</div>
-	{% else %}
-		<p>Login to claim the tickets!</p>
-	{% endif %}
+
 	<div id="event-descrip">
 		{{event.Description|linebreaks }}
 	</div>
