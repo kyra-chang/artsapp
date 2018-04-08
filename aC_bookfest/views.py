@@ -24,21 +24,27 @@ from django.utils import timezone
 
 
 def claim(request):
-    return render(request, 'frontend/claim_tickets.html', {})
+    if request.user.is_authenticated:
+        return render(request, 'frontend/claim_tickets.html', {})
+    else:
+        return redirect("cas_ng_login")
 
 
 def about(request):
-    return render(request, 'frontend/about.html', {})
+    if request.user.is_authenticated:
+        return render(request, 'frontend/about.html', {})
+    else:
+        return redirect("cas_ng_login")
 
 # - Kyra 3.19.2018
 # this method is to render index
 def index(request):
     return render(request, 'alpha/index.html', {})
 
-# - Kyra 3.19.2018
-# this method is to render index
-def testhome(request):
-    return render(request, 'form/home.html', {})
+# # - Kyra 3.19.2018
+# # this method is to render index
+# def testhome(request):
+#     return render(request, 'form/home.html', {})
 
 # Done by Alex
 # Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
