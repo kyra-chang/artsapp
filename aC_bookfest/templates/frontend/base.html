@@ -84,12 +84,13 @@
 		    <!-- Sidebar -->
 		    <nav class="sidebar-container">
 		        <ul>
-					<li class="sidebar-item"><a href="free.html">Free w/ Cal ID</a></li>
-		        	<li class="sidebar-item"><a href="home.html">Home</a></li>
-		            <li class="sidebar-item"><a href="about.html">About</a></li>
-		            <li class="sidebar-item"><a href="profile.html">My Profile</a></li>
-		            <li class="sidebar-item"><a href="contact.html">Contact</a></li>
-		            <li class="sidebar-item"><a href="login.html">CalNet Login</a></li>
+					<li class="sidebar-item"><a href="{% url 'free' %}">Free w/ Cal ID</a></li>
+		        	<li class="sidebar-item"><a href="{% url 'home' %}">Home</a></li>
+		            <li class="sidebar-item"><a href="{% url 'about' %}">About</a></li>
+		            <li class="sidebar-item"><a href="{% url 'user' pk=profile.pk %}">My Profile</a></li>
+		            <li class="sidebar-item"><a href="{% url 'free' pk=event.pk %}">Contact</a></li>
+		            <li class="sidebar-item"><a href="{% url 'cas_ng_login' pk=profile.pk %}">CalNet Login</a></li>
+		            <li class="sidebar-item"><a href="{% url 'cas_ng_logout' pk=profile.pk %}">Sign Out</a></li>
 		        </ul>
 		    </nav>
 
