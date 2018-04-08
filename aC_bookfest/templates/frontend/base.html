@@ -42,7 +42,8 @@
 	<script type="text/javascript">
         function f(event){
           var t = event.target
-          var likeUrl = t.href
+          console.log(t)
+          var likeUrl = t.dataset.href
 
           event.preventDefault()
 
