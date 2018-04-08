@@ -2,15 +2,15 @@
 {% extends 'frontend/base.html' %}
 
 {% block content %}
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/regular.css" integrity="sha384-A/oR8MwZKeyJS+Y0tLZ16QIyje/AmPduwrvjeH6NLiLsp4cdE4uRJl8zobWXBm4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
 	<script type="text/javascript">
         function f(event){
           var t = event.target
-          console.log(t)
+          console.log(event)
           var likeUrl = t.dataset.href
-
           event.preventDefault()
 
           $.ajax({
@@ -31,6 +31,7 @@
             })
         }
   </script>
+
 {% with user.Profile.favorites.all as favorites %}
 			<!-- Event -->			
 <div id="event">
@@ -47,6 +48,9 @@
 			<h3>No tickets left :'(</h3>
 			<h3>Signup in the waitlist</h3>
 		{% endif %}
+
+
+
 		</div>
 		<div class="heart">
 		{% if event in favorites %}
