@@ -23,6 +23,8 @@ from django.utils import timezone
 
 
 
+def claim(request):
+    return render(request, 'frontend/claim_tickets.html', {})
 
 # - Kyra 3.19.2018
 # this method is to render index

@@ -14,7 +14,7 @@
 	<div id="button-container">
 		<div id="claim" class="button">
 		{% if event.Max_order != 0 %}
-			<a href="{% url 'event_order' pk=event.pk %}">Claim Tickets</a>
+			<a href="{% url 'claim' %}">Claim Tickets</a>
 		{% else %}
 			<h3>No tickets left :'(</h3>
 			<h3>Signup in the waitlist</h3>
