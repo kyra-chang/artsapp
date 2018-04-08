@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     # url(r'^home/$', views.testhome, name='testhome'),
     url(r'^free/$', views.free, name='free'),
+    url(r'^free_event/(?P<pk>\d+)/$', views.free_event_detail, name='free_event_detail'),
     url(r'^about/$', views.about, name='about'),
     url(r'^user/$', views.user, name='user'),
  

@@ -56,6 +56,10 @@ def free(request):
     free_list = Event.objects.filter(Type='free')
     return render(request, 'frontend/free.html', { 'free_list': free_list })
 
+def free_event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'frontend/free_event.html', { 'event': event })
+
 
 # - Kyra 3.22.2018
 # this method is to favorite

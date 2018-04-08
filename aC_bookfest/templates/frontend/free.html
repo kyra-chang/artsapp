@@ -7,7 +7,7 @@
 	{% if free_list %}
 	    {% for event in free_list %}
 	<div class="event-container" >
-		<a href="{% url 'event_detail' pk=event.pk %}">
+		<a href="{% url 'free_event_detail' pk=event.pk %}">
 		{% if event.Picture.url %}
             <div class="event-image">
                 <img src="{{ event.Picture.url }}" alt="{{ event.Title }}"/>
