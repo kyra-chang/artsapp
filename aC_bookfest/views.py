@@ -31,10 +31,8 @@ def claim(request):
 
 
 def about(request):
-    if request.user.is_authenticated:
-        return render(request, 'frontend/about.html', {})
-    else:
-        return redirect("cas_ng_login")
+    return render(request, 'frontend/about.html', {})
+
 
 # - Kyra 3.19.2018
 # this method is to render index
@@ -199,9 +197,13 @@ class ProfileUpdate(UpdateView):
 # - Kyra 3.19.2018
 # This method is just render the related html file for viewing the user dashboard
 def user(request):
-    events = request.user.Profile.favorites.all().union(request.user.Profile.orders.all())
-    return render(request, 'frontend/myevents.html', { 'events': events
-    })
+    if request.user.is_authenticated:
+        events = request.user.Profile.favorites.all().union(request.user.Profile.orders.all())
+        return render(request, 'frontend/myevents.html', { 'events': events
+        })
+    else:
+        return redirect("cas_ng_login")
+    
 	
 # MERGED to index by Kyra
 # Done by Alex
