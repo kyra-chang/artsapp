@@ -2,7 +2,7 @@
 {% extends 'frontend/base.html' %}
 
 {% block content %}
-<div class="rest">
+
 {% with user.Profile.favorites.all as favorites %}
 			<!-- Event -->			
 <div id="event">
@@ -12,7 +12,7 @@
 		<div id="event-location">{{ event.Location }}</div>
 	</div>
 	<div id="button-container">
-		<div class="button">
+		<div id="claim" class="button">
 		{% if event.Max_order != 0 %}
 			<a href="{% url 'event_order' pk=event.pk %}">Claim Tickets</a>
 		{% else %}
@@ -35,6 +35,6 @@
 	<div id="event-website">Visit website <a href="{{ event.Website }}" target="_blank">here</a>.</div>
 	<div id="back-button"><a href="{% url 'home' %}">< Back</a></div>
 </div>
-</div>
+
 {% endwith %}
 {% endblock %}
