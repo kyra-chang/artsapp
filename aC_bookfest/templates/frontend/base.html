@@ -88,8 +88,11 @@
 		        	<li class="sidebar-item"><a href="{% url 'home' %}">Home</a></li>
 		            <li class="sidebar-item"><a href="{% url 'about' %}">About</a></li>
 		            <li class="sidebar-item"><a href="{% url 'user' %}">My Profile</a></li>
-		            <li class="sidebar-item"><a href="{% url 'cas_ng_login' %}">CalNet Login</a></li>
-		            <li class="sidebar-item"><a href="{% url 'cas_ng_logout' %}">Sign Out</a></li>
+		            {% if user.is_authenticated %}
+		            	<li class="sidebar-item"><a href="{% url 'cas_ng_logout' %}">Sign Out</a></li>
+		            {% else %}
+		            	<li class="sidebar-item"><a href="{% url 'cas_ng_login' %}">CalNet Login</a></li>
+		            {% endif %}
 		        </ul>
 		    </nav>
 
