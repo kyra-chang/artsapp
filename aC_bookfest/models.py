@@ -19,7 +19,7 @@ class Event(models.Model):
     Description = models.TextField(max_length=10000, blank=True)
     #Cost = models.IntegerField()
     OfferType = models.CharField(max_length=100, blank=True)
-    Max_order = models.IntegerField(null=False, blank=True)
+    Max_order = models.IntegerField(blank=True)
     Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg', blank=True)
 
 #for the use of the extending User model, please go to this website:

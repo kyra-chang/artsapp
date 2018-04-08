@@ -80,11 +80,15 @@
 		-o-transition: all 0.3s;
 	}
 
-	.sidebar-item a, .sidebar-item a:link, .sidebar-item a:visited, .sidebar-item a:hover {
+	a, a:link, a:visited {
 		text-decoration: none;
 		color: white;
 	}
 
+	.sidebar-item a:hover {
+		text-decoration: none;
+		color: white;
+	}
 	
 /*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292 */
 /* Keyframes */
@@ -212,64 +216,29 @@
 		background-color: rgb(238, 31, 96);
 	}
 
-/* Event */
-
-	#event {
-		/*width: 350px;*/
-	}
-
-	#event-title {
+/* Text */
+	#page-title {
 		font-size: 30px;
-		padding-top: 30px;
-		padding-bottom: 30px;
+		padding-top: 40px;
+		padding-bottom: 20px;
 		font-weight: 700;
 		width: 275px;
 		margin: 0 auto;
 		text-align: center;
-
 	}
 
-	#event-image {
-		text-align: center;
-	}
-
-	#event-image img {
-		width: 275px;
-	}
-
-	#event-location {
-		margin-top: 20px;
-		margin-bottom: 30px;
-		font-style: italic;
-		font-size: 16px;
-		/*font-weight: 700;*/
-	}
-
-	#event-descrip {
+	#description {
 		width: 275px;
 		line-height: 25px;
 		margin: 0 auto;
 		text-align: justify;
-	}
-
-	#event-website {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		text-align: center;
-	}
-
-	#event-website a {
-		color: rgb(83, 98, 111);
-		font-weight: 700;
-		text-decoration: none;
+		padding-bottom: 50px;
 	}
 
 	#back-button {
 		text-align: center;
 		text-decoration: none;
-		margin: 0 auto;
 		margin-bottom: 70px;
-		margin-top: 50px;
 	}
 
 	#back-button a {
@@ -279,47 +248,6 @@
 		text-decoration: none;
 		background-color: rgb(83, 98, 111);
 		border-radius: 8%;
-	}
-
-/* Three Buttons */
-	.button {
-		margin: 0 auto;
-		text-align: center;
-		text-decoration: none;
-		color: white;
-		padding: 15px 20px;
-		text-decoration: none;
-		background-color: rgb(83, 98, 111);
-		border-radius: 8%;
-		width: 100px;
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-
-	#claim a, #claim a:active, #claim a:visited, #claim a:link {
-		color: white;
-		text-decoration: none;
-	}
-
-	.button:focus {
-		background-color: green;
-	}
-
-	/*.button a {
-		text-align: center;
-		color: white;
-		padding: 15px 20px;
-		text-decoration: none;
-		background-color: rgb(83, 98, 111);
-		border-radius: 8%;
-	}*/
-	.heart{
-		text-align: center;
-		text-decoration: none;
-		width: 100px;
-		margin: 0 auto;
-		margin-top: 20px;
-		margin-bottom: 20px;
 	}
 
 
@@ -361,23 +289,39 @@
 		-o-transform: translateX(0px);
 	}
 
+
 /* Media Queries */
 	@media only screen and (min-width: 750px) {
+
+		#page-title {
+			font-size: 40px;
+			width: 500px;
+		}
+
+		#description {
+			width: 500px;
+			font-size: 18px;
+			line-height: 30px;
+			padding-bottom: 60px;
+		}
 
 		#bottom-text { 
 			font-size: 28px;
 			padding-top: 50px;
-
 		}
 
 		#bottom-email {
 			font-size: 20px;
 			padding-bottom: 70px;
 		}
+
+		#back-button a {
+			font-size: 18px;
+
+		}
 	}
 
 	@media only screen and (min-width: 1000px) {
-
 		#bottom-text { 
 			font-size: 32px;
 			padding-top: 60px;
