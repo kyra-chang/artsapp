@@ -84,7 +84,6 @@
 		text-decoration: none;
 		color: white;
 	}
-
 	
 /*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292 */
 /* Keyframes */
@@ -299,15 +298,6 @@
 	#claim a, #claim a:active, #claim a:visited, #claim a:link {
 		color: white;
 		text-decoration: none;
-	}
-
-	.heart{
-		text-align: center;
-		text-decoration: none;
-		width: 100px;
-		margin: 0 auto;
-		margin-top: 20px;
-		margin-bottom: 20px;
 	}
 
 

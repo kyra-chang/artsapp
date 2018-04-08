@@ -80,11 +80,15 @@
 		-o-transition: all 0.3s;
 	}
 
-	.sidebar-item a, .sidebar-item a:link, .sidebar-item a:visited, .sidebar-item a:hover {
+	a, a:link, a:visited {
 		text-decoration: none;
 		color: white;
 	}
 
+	.sidebar-item a:hover {
+		text-decoration: none;
+		color: white;
+	}
 	
 /*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292 */
 /* Keyframes */
@@ -106,6 +110,17 @@
 			opacity: 0;
 		}
 	}
+
+
+	/*[aos="fade-up"] {
+		opacity: 0;
+		transition-property: opacity;
+	}
+
+	[aos="fade-up"].aos-animate {
+  		opacity: 1;
+	}*/
+
 
 /*Navbar*/
 	#nav-bar {
@@ -212,104 +227,90 @@
 		background-color: rgb(238, 31, 96);
 	}
 
-/* Event */
+/*Spotlight*/
 
-	#event {
-		/*width: 350px;*/
+
+	#spotlight-container {
+		position: relative;
+		text-align: center;
 	}
 
-	#event-title {
-		font-size: 30px;
-		padding-top: 30px;
-		padding-bottom: 30px;
+	#spotlight-image {
+		height: 300px;
+		width: 100%;
+		filter: brightness(30%);
+	}
+
+	#spotlight-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	#spotlight-text {
+		position: absolute;
+		color: white;
+		font-size: 35px;
+		width: 300px;
+		top: 50%;
+    	left: 50%;
+    	transform: translate(-50%, -50%);
+	}
+
+/* Events */
+
+	.event-container {
+		position: relative;
+	}
+
+	.event-image {
+		height: 265px;
+		width: 100%;
+	}
+
+	.event-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.event-info {
+		position: absolute;
+		width: 100%;
+		height: 85px;
+		bottom: 0;
+		opacity: 0.85;
+		color: white;
+	}
+
+	.event-title {
+		position: absolute;
+		top: 15px;
+		left: 15px;
+		font-size: 20px;
 		font-weight: 700;
-		width: 275px;
-		margin: 0 auto;
-		text-align: center;
-
 	}
 
-	#event-image {
-		text-align: center;
+	.event-location {
+		position: absolute;
+		bottom: 15px;
+		left: 15px;
+		font-size: 14px;
 	}
 
-	#event-image img {
-		width: 275px;
+	.event-tix {
+		position: absolute;
+		top: 21px;
+		right: 15px;
+		font-size: 13px;
 	}
 
-	#event-location {
-		margin-top: 20px;
-		margin-bottom: 30px;
-		font-style: italic;
-		font-size: 16px;
-		/*font-weight: 700;*/
+	.event-interest {
+		position: absolute;
+		bottom: 16px;
+		right: 15px;
+		font-size: 13px;
 	}
-
-	#event-descrip {
-		width: 275px;
-		line-height: 25px;
-		margin: 0 auto;
-		text-align: justify;
-	}
-
-	#event-website {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		text-align: center;
-	}
-
-	#event-website a {
-		color: rgb(83, 98, 111);
-		font-weight: 700;
-		text-decoration: none;
-	}
-
-	#back-button {
-		text-align: center;
-		text-decoration: none;
-		margin: 0 auto;
-		margin-bottom: 70px;
-		margin-top: 50px;
-	}
-
-	#back-button a {
-		text-align: center;
-		color: white;
-		padding: 15px 20px;
-		text-decoration: none;
-		background-color: rgb(83, 98, 111);
-		border-radius: 8%;
-	}
-
-/* Three Buttons */
-	.button {
-		margin: 0 auto;
-		text-align: center;
-		text-decoration: none;
-		color: white;
-		padding: 15px 20px;
-		text-decoration: none;
-		background-color: rgb(83, 98, 111);
-		border-radius: 8%;
-		width: 100px;
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-
-	#claim a, #claim a:active, #claim a:visited, #claim a:link {
-		color: white;
-		text-decoration: none;
-	}
-
-	.heart{
-		text-align: center;
-		text-decoration: none;
-		width: 100px;
-		margin: 0 auto;
-		margin-top: 20px;
-		margin-bottom: 20px;
-	}
-
 
 /* Bottom */
 
@@ -349,57 +350,67 @@
 		-o-transform: translateX(0px);
 	}
 
+/* AngularJS Gradient Classes */
+/* Angular code taken from https://stackoverflow.com/questions/12179455/how-to-assign-alternate-class-to-rows-in-angular-js */
+	.color0 {
+		background: linear-gradient(rgb(238, 31, 96), rgb(237, 78, 51));
+	}
+
+	.color1 {
+		background: linear-gradient(rgb(0, 176, 218), rgb(0, 178, 165));
+	}
+
+	.color2 {
+		background: linear-gradient(rgb(207, 221, 69), rgb(157, 173, 51));
+	}
+
+/* ------------------------------------------------- */
+
 /* Media Queries */
 	@media only screen and (min-width: 750px) {
-
-		#event-title {
-			font-size: 40px;
-			width: 500px;
+	    #spotlight-image {
+			height: 450px;
 		}
 
-		#event-image img {
-			width: 500px;
+		.event-image {
+			height: 450px;
 		}
 
-		#event-location {
-			width: 500px;
-			font-size: 25px;
-			margin: 0 auto;
-			margin-top: 30px;
-			margin-bottom: 30px;
+		.event-info {
+			height: 120px;
 		}
 
-		#event-descrip {
-			width: 500px;
-			font-size: 18px;
-			line-height: 30px;
-			padding-bottom: 15px;
+		.event-title {
+			top: 20px;
+			left: 20px;
+			font-size: 34px;
 		}
 
-		#event-website {
-			font-size: 18px;
-			padding-bottom: 15px;
+		.event-location {
+			position: absolute;
+			bottom: 20px;
+			left: 20px;
+			font-size: 24px;
 		}
 
-		#button-container {
-			margin-top: 20px;
-			margin-bottom: 20px;
+		.event-tix {
+			position: absolute;
+			top: 35px;
+			right: 20px;
+			font-size: 20px;
 		}
 
-		.button {
-			font-size: 18px;
-			width: 200px;
-			border-radius: 10%;
-		}
-
-		#back-button a {
-			font-size: 18px;
-			width: 200px;
+		.event-interest {
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+			font-size: 20px;
 		}
 
 		#bottom-text { 
 			font-size: 28px;
 			padding-top: 50px;
+
 		}
 
 		#bottom-email {
@@ -409,35 +420,54 @@
 	}
 
 	@media only screen and (min-width: 1000px) {
-
-		#event-title {
-			padding-top: 50px;
-			font-size: 42px;
-			width: 750px;
+	    #spotlight-image {
+			height: 600px;
 		}
 
-		#event-image img {
-			width: 750px;
+		#spotlight-text {
+			font-size: 55px;
+			width: 350px;
 		}
 
-		#event-location {
-			width: 750px;
-			font-size: 27px;
-			margin: 0 auto;
-			margin-top: 30px;
-			margin-bottom: 30px;
+		.sidebar-item {
+			font-size: 20px;
+			padding-bottom: 25px;
 		}
 
-		#event-descrip {
-			width: 750px;
-			font-size: 22px;
-			line-height: 40px;
-			padding-bottom: 15px;
+		.event-image {
+			height: 600px;
 		}
 
-		#event-website {
-			font-size: 22px;
-			padding-bottom: 15px;
+		.event-info {
+			height: 150px;
+		}
+
+		.event-title {
+			top: 25px;
+			left: 25px;
+			font-size: 40px;
+		}
+
+		.event-location {
+			position: absolute;
+			bottom: 25px;
+			left: 25px;
+			font-size: 30px;
+		}
+
+		.event-tix {
+			position: absolute;
+			top: 42px;
+			right: 25px;
+			font-size: 25px;
+
+		}
+
+		.event-interest {
+			position: absolute;
+			bottom: 25px;
+			right: 25px;
+			font-size: 25px;
 		}
 
 		#bottom-text { 
