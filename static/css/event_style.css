@@ -1,6 +1,6 @@
 /*General*/
 
-	/* http://meyerweb.com/eric/tools/css/reset/ 
+	/* http://meyerweb.com/eric/tools/css/reset/
    	v2.0 | 20110126
    	License: none (public domain)*/
 
@@ -13,8 +13,8 @@
 	dl, dt, dd, ol, ul, li,
 	fieldset, form, label, legend,
 	table, caption, tbody, tfoot, thead, tr, th, td,
-	article, aside, canvas, details, embed, 
-	figure, figcaption, footer, header, hgroup, 
+	article, aside, canvas, details, embed,
+	figure, figcaption, footer, header, hgroup,
 	menu, nav, output, ruby, section, summary,
 	time, mark, audio, video {
 		margin: 0;
@@ -25,7 +25,7 @@
 		vertical-align: baseline;
 	}
 	/* HTML5 display-role reset for older browsers */
-	article, aside, details, figcaption, figure, 
+	article, aside, details, figcaption, figure,
 	footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
@@ -50,7 +50,7 @@
 
 	/* End of reset.css */
 
-	/*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292 */
+	/*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292
 	html {
 		animation: fadeIn 0.4s ease forwards;
 	}
@@ -58,6 +58,7 @@
 	html.fadeSiteOut {
 		animation: fadeOut 0.4s ease forwards;
 	}
+	*/
 
 	body {
 		margin:0 ! important;
@@ -85,10 +86,10 @@
 		color: white;
 	}
 
-	
+
 /*animation code from https://blog.adam-marsden.co.uk/minimal-page-transitions-with-jquery-css-d97f692d5292 */
 /* Keyframes */
-	
+
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
@@ -160,7 +161,7 @@
 		    -moz-transform: rotate(45deg) translate(-5px, -3px);
 		    transform: rotate(45deg) translate(-5px, -3px);
 		}
-	
+
 	.sidebar-container {
 		position: fixed;
 		float: left;
@@ -234,7 +235,7 @@
 	}
 
 	#event-image img {
-		width: 275px;
+		width: 100%;
 	}
 
 	#event-location {
@@ -318,7 +319,7 @@
 		color: white;
 	}
 
-	#bottom-text { 
+	#bottom-text {
 		font-size: 22px;
 		text-align: center;
 		padding-top: 40px;
@@ -358,7 +359,7 @@
 		}
 
 		#event-image img {
-			width: 500px;
+			width: 100%;
 		}
 
 		#event-location {
@@ -397,7 +398,7 @@
 			width: 200px;
 		}
 
-		#bottom-text { 
+		#bottom-text {
 			font-size: 28px;
 			padding-top: 50px;
 		}
@@ -417,7 +418,7 @@
 		}
 
 		#event-image img {
-			width: 750px;
+			width: 100%;
 		}
 
 		#event-location {
@@ -440,7 +441,7 @@
 			padding-bottom: 15px;
 		}
 
-		#bottom-text { 
+		#bottom-text {
 			font-size: 32px;
 			padding-top: 60px;
 		}
