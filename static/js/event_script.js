@@ -3,18 +3,13 @@ function heart(t){
 
 
         var likeUrl = t.dataset.href
-
+        console.log(likeUrl)
 
           $.ajax({
               url: likeUrl,
               method: "GET",
               data: {},
               success: function(data){
-                // if (t.className == "fas fa-heart fa-2x"){
-                //     t.className = "far fa-heart fa-2x"
-                // } else {
-                //     t.className = "fas fa-heart fa-2x"
-                // }
                 t.classList.toggle("fas", "far")
               }, error: function(error){
                 console.log(error)
