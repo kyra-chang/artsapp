@@ -1,4 +1,30 @@
 /* Code inspired by W3Schools */
+function heart(event){
+        event.preventDefault()
+        console.log(event)
+        var t = event.target
+        var likeUrl = t.dataset.href
+
+
+          $.ajax({
+              url: likeUrl,
+              method: "GET",
+              data: {},
+              success: function(data){
+                if (t.className == "fas fa-heart fa-2x"){
+                    t.className = "far fa-heart fa-2x"
+                } else {
+                    t.className = "fas fa-heart fa-2x"
+                }
+              }, error: function(error){
+                console.log(error)
+                console.log("error")
+              }
+            })
+
+
+
+    };
 
 function myFunction(x) {
     x.classList.toggle("change");
