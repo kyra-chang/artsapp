@@ -20,7 +20,7 @@ function heart(t){
                 console.log(error)
               }
             })
-
+       return false;
 
 
     };
