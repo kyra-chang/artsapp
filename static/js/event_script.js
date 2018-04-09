@@ -3,6 +3,7 @@ function heart(t){
 
 
         var likeUrl = t.dataset.href
+        var togg = t.dataset.prefix
         console.log(likeUrl)
 
           $.ajax({
@@ -10,7 +11,11 @@ function heart(t){
               method: "GET",
               data: {},
               success: function(data){
-                t.classList.toggle("fas", "far")
+                if (togg == "fas"){
+                  togg = "far"
+                } else {
+                  togg = "fas"
+                }
               }, error: function(error){
                 console.log(error)
               }
