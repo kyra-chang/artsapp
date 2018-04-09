@@ -41,11 +41,12 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-        function f(t){
-          console.log(t)
-          var likeUrl = t.dataset.href
+        document.getElementById("heart").addEventListener("click", function(event){
+		    event.preventDefault()
+		    console.log(event)
+		    var t = event.target
+		    var likeUrl = t.dataset.href
 
-          event.preventDefault()
 
           $.ajax({
               url: likeUrl,
@@ -55,7 +56,6 @@
                 if (t.className == "fas fa-heart fa-2x"){
                     t.className = "far fa-heart fa-2x"
                 } else {
-                    console.log(t.className)
                     t.className = "fas fa-heart fa-2x"
                 }
               }, error: function(error){
@@ -63,7 +63,10 @@
                 console.log("error")
               }
             })
-        }
+
+
+
+		});
   </script>
 </head>
 <body>
