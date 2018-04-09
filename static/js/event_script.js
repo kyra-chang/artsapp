@@ -12,10 +12,10 @@ function heart(t){
               data: {},
               success: function(data){
                 if (togg == "fas"){
-                  togg = "far"
+                  t.dataset.prefix = "far"
                   console.log(togg)
                 } else {
-                  togg = "fas"
+                  t.dataset.prefix = "fas"
                   console.log(togg)
                 }
               }, error: function(error){
