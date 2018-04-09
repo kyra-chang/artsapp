@@ -75,33 +75,7 @@
 	<div id="event-website">Visit website <a href="{{ event.Website }}" target="_blank">here</a>.</div>
 	<div id="back-button"><a href="{% url 'home' %}">< Back</a></div>
 </div>
-
-{% endwith %}
 <script type="text/javascript">
-        // function f(t){
-
-        //   console.log(t)
-        //   var likeUrl = t.dataset.href
-
-        //   event.preventDefault()
-
-        //   $.ajax({
-        //       url: likeUrl,
-        //       method: "GET",
-        //       data: {},
-        //       success: function(data){
-        //         if (t.className == "fas fa-heart fa-2x"){
-        //             t.className = "far fa-heart fa-2x"
-        //         } else {
-        //             console.log(t.className)
-        //             t.className = "fas fa-heart fa-2x"
-        //         }
-        //       }, error: function(error){
-        //         console.log(error)
-        //         console.log("error")
-        //       }
-        //     })
-        // }
         document.getElementById("heart").addEventListener("click", function(event){
 		    event.preventDefault()
 		    console.log(event)
@@ -129,4 +103,6 @@
 
 		});
   </script>
+{% endwith %}
+
 {% endblock %}
