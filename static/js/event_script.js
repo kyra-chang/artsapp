@@ -1,8 +1,7 @@
 /* Code inspired by W3Schools */
-function heart(event){
-        event.preventDefault()
-        console.log(event)
-        var t = event.target
+function heart(t){
+
+
         var likeUrl = t.dataset.href
 
 
@@ -11,14 +10,14 @@ function heart(event){
               method: "GET",
               data: {},
               success: function(data){
-                if (t.className == "fas fa-heart fa-2x"){
-                    t.className = "far fa-heart fa-2x"
-                } else {
-                    t.className = "fas fa-heart fa-2x"
-                }
+                // if (t.className == "fas fa-heart fa-2x"){
+                //     t.className = "far fa-heart fa-2x"
+                // } else {
+                //     t.className = "fas fa-heart fa-2x"
+                // }
+                t.classList.toggle("fas", "far")
               }, error: function(error){
                 console.log(error)
-                console.log("error")
               }
             })
 
