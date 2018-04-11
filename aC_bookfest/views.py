@@ -47,7 +47,7 @@ def index(request):
 # Done by Alex
 # Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
 def home(request):
-    latest_event_list = Event.objects.filter(Type='event').order_by('Time')[:5]
+    latest_event_list = Event.objects.filter(Type='event').order_by('Time')
     return render(request, 'frontend/index.html', { 'latest_event_list': latest_event_list })
 
 def free(request):
