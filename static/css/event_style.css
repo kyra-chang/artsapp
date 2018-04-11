@@ -253,6 +253,7 @@
 		line-height: 25px;
 		text-align: justify;
 		padding: 5%;
+		margin: auto;
 	}
 
 	#event-website {
@@ -389,6 +390,7 @@
 		#button-container {
 			margin-top: 20px;
 			margin-bottom: 20px;
+			text-align: center;
 		}
 
 		.button {
