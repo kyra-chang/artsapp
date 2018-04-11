@@ -63,7 +63,8 @@ def free_event_detail(request, pk):
 # this method is to favorite
 # https://stackoverflow.com/questions/5674968/django-query-to-get-users-favorite-posts
 def event_favorite(request, pk):
-    if request.user.is_authenticated and request.is_ajax() == True:
+    if request.user.is_authenticated:
+        if request.is_ajax() == True:
             event = get_object_or_404(Event, pk=pk)
             fav = request.user.Profile.favorites
             if event not in fav.all():
@@ -84,6 +85,7 @@ def event_favorite(request, pk):
 # UNDER CONSTRUCTION
 # this method is to checkin
 def event_checkin(request, pk):
+
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -98,58 +100,62 @@ def event_checkin(request, pk):
             return redirect('home')
     else:
         form = OrderForm()
-    return render(request, 'form/checkin.html', {
-        'form': form
-    })
+        if request.user.is_authenticated:
+            return render(request, 'form/checkin.html', {
+                'form': form
+            })
+        else:
+            return redirect("cas_ng_login")
+
 
 # - Kyra 3.22.2018
 # this method is to order the tickets
-def event_order(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            order = form.save(commit=False)
-            order.Profile = request.user.Profile
-            order.event = event
-            order.order_date = timezone.now()
-            order.save()
-            event.Max_order -= 1
-            event.save()
-            # TODO verify if the save is success or not
-            messages.success(request, 'You ordered the tickets!')
-            # leave point system and ranking feature later
-            #request.user.Profile.points -= event.Cost
-            #request.user.Profile.save()
-            return redirect('home')
-    else:
-        form = OrderForm()
-    return render(request, 'form/order.html', {
-        'form': form, 'event': event
-    })
+# def event_order(request, pk):
+#     event = get_object_or_404(Event, pk=pk)
+#     if request.method == 'POST':
+#         form = OrderForm(request.POST)
+#         if form.is_valid():
+#             order = form.save(commit=False)
+#             order.Profile = request.user.Profile
+#             order.event = event
+#             order.order_date = timezone.now()
+#             order.save()
+#             event.Max_order -= 1
+#             event.save()
+#             # TODO verify if the save is success or not
+#             messages.success(request, 'You ordered the tickets!')
+#             # leave point system and ranking feature later
+#             #request.user.Profile.points -= event.Cost
+#             #request.user.Profile.save()
+#             return redirect('home')
+#     else:
+#         form = OrderForm()
+#     return render(request, 'form/order.html', {
+#         'form': form, 'event': event
+#     })
 
 
 # - Kyra 3.19.2018
 # this method is to upload the pictures and comments for specific events
-def event_comment_create(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    if request.method == 'POST':
-        form = CommentForm(request.POST, request.FILES)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.event = event
-            comment.created_date = timezone.now()
-            comment.save()
-            # TODO verify if the save is success or not
-    else:
-        form = CommentForm()
-    # return render(request, 'form/event.html', {
-    #     'form': form, 'event': event
-    # })
-    return render(request, 'frontend/event.html', {
-        'form': form, 'event': event
-    })
+# def event_comment_create(request, pk):
+#     event = get_object_or_404(Event, pk=pk)
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.user = request.user
+#             comment.event = event
+#             comment.created_date = timezone.now()
+#             comment.save()
+#             # TODO verify if the save is success or not
+#     else:
+#         form = CommentForm()
+#     # return render(request, 'form/event.html', {
+#     #     'form': form, 'event': event
+#     # })
+#     return render(request, 'frontend/event.html', {
+#         'form': form, 'event': event
+#     })
 
 # - Kyra 3.19.2018
 # this method is for creating the user and its related Profile after submitting the form
