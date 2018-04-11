@@ -133,7 +133,11 @@ def event_checkin(request, pk):
 #     return render(request, 'form/order.html', {
 #         'form': form, 'event': event
 #     })
-
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'frontend/event.html', {
+        'event': event
+    })
 
 # - Kyra 3.19.2018
 # this method is to upload the pictures and comments for specific events

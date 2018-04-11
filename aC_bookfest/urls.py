@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^update/(?P<pk>\d+)/$', views.ProfileUpdate.as_view(), name='profile_update'),
     
 
-    # url(r'^event/(?P<pk>\d+)/$', views.event_comment_create, name='event_detail'),
+    url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
     url(r'^event/(?P<pk>\d+)/fav$', views.event_favorite, name='event_favorite'),
     # url(r'^event/(?P<pk>\d+)/order$', views.event_order, name='event_order'),
     url(r'^claim/$', views.claim, name='claim'),
