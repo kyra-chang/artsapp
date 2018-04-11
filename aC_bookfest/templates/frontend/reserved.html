@@ -1,0 +1,13 @@
+
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+
+<div id="page-title">Reservation Success</div>
+<div id="description">
+	Event name: {{ event.Title }}
+	Order time: {{ time }}
+</div>
+<div id="back-button"><a href="{% url 'home' %}">Home</a></div>
+
+{% endblock %}

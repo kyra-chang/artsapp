@@ -23,11 +23,32 @@ from django.utils import timezone
 
 
 
-def claim(request):
+def claim(request, pk):
     if request.user.is_authenticated:
         return render(request, 'frontend/claim_tickets.html', {})
     else:
         return redirect("cas_ng_login")
+
+def reserve(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.Profile = request.user.Profile
+            order.event = event
+            order.order_date = timezone.now()
+            order.save()
+            event.Max_order -= 1
+            event.save()
+            # TODO verify if the save is success or not
+            # leave point system and ranking feature later
+            #request.user.Profile.points -= event.Cost
+            #request.user.Profile.save()
+            return render(request, 'form/reserved.html', {
+                'event': event, 'time': order.order_date
+            })
+    return render(request, 'frontend/claim_tickets.html', {})
 
 
 def about(request):
@@ -63,19 +84,18 @@ def free_event_detail(request, pk):
 # this method is to favorite
 # https://stackoverflow.com/questions/5674968/django-query-to-get-users-favorite-posts
 def event_favorite(request, pk):
-    if request.user.is_authenticated:
-        if request.is_ajax() == True:
-            event = get_object_or_404(Event, pk=pk)
-            fav = request.user.Profile.favorites
-            if event not in fav.all():
-                fav.add(event)
-                request.user.Profile.save()
-            else:
-                fav.remove(event)
-                request.user.Profile.save()
-            # else:
-            #     form = DummyForm()
-            return HttpResponse(status=200)
+    if request.user.is_authenticated and request.is_ajax() == True:
+        event = get_object_or_404(Event, pk=pk)
+        fav = request.user.Profile.favorites
+        if event not in fav.all():
+            fav.add(event)
+            request.user.Profile.save()
+        else:
+            fav.remove(event)
+            request.user.Profile.save()
+        # else:
+        #     form = DummyForm()
+        return HttpResponse(status=200)
     else:
         return redirect("cas_ng_login")
 
