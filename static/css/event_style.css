@@ -290,19 +290,19 @@
 		margin: 0 auto;
 		text-align: center;
 		text-decoration: none;
-		color: white;
-		padding: 15px 20px;
+		/*color: white;*/
+		/*padding: 15px 20px;*/
 		text-decoration: none;
-		background-color: rgb(83, 98, 111);
-		border-radius: 8%;
-		width: 100px;
-		margin-top: 20px;
-		margin-bottom: 20px;
+		/*background-color: rgb(83, 98, 111);*/
+		/*border-radius: 8%;*/
+		width: 120px;
+		/*margin-top: 20px;
+		margin-bottom: 20px;*/
 		display: inline-block;
 	}
 
 	#claim a, #claim a:active, #claim a:visited, #claim a:link {
-		color: white;
+		color: black;
 		text-decoration: none;
 	}
 
@@ -311,8 +311,13 @@
 		text-decoration: none;
 		width: 100px;
 		margin: 0 auto;
-		margin-top: 20px;
-		margin-bottom: 20px;
+		/*margin-top: 20px;
+		margin-bottom: 20px;*/
+		border: black;
+		border-left-width: 1px;
+		border-left-style: solid;
+		border-right-width: 1px;
+		border-right-style: solid;
 		display: inline-block;
 	}
 
