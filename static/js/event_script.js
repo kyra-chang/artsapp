@@ -1,7 +1,7 @@
 /* Code inspired by W3Schools */
 function heart(t){
 
-
+        console.log(t)
         var likeUrl = t.dataset.href
 
           $.ajax({

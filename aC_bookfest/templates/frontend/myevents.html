@@ -10,34 +10,35 @@
 
 
 		{% if events %}
-			{% for event in events %}
+			{% for e in events %}
 				<div class="event-container" >
-					<a href="{% url 'event_detail' pk=event.pk %}">
-					{% if event.Picture.url %}
+					<a href="{% url 'event_detail' pk=e.pk %}">
+					{% if e.Picture.url %}
 					<div class="event-image">
-						<img src="{{ event.Picture.url }}" alt="{{ event.Title }}"/>
+						<img src="{{ e.Picture.url }}" alt="{{ e.Title }}"/>
 						<!-- <img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png">  -->
 					</div>
 					{% endif %}
-					</a>
+
 					<div class="event-info {% cycle 'color0' 'color1' 'color2' %}" >
-						<div class="event-title">{{ event.s_Title }}</div>
-						<div class="event-location">{{ event.s_Time }} | {{ event.s_Location }}</div>
-						{% if event.id in claimed %}
+						<div class="event-title">{{ e.s_Title }}</div>
+						<div class="event-location">{{ e.s_Time }} | {{ e.s_Location }}</div>
+						{% if e.id in claimed %}
 							<div class="event-tix">Ticket Claimed</div>
-						{% elif event.id in reserved %}
+						{% elif e.id in reserved %}
 							<div class="event-tix">Ticket Reserved</div>
 						{% else %}
-							<div class="event-tix">{{ event.Max_order }} Tickets</div>
+							<div class="event-tix">{{ e.Max_order }} Tickets</div>
 						{% endif %}
-						
-						<div class="event-interest">
-							{% if event in favorites %}
-					            {{ event.s_OfferType }}  <i class="fas fa-heart" id="heart" onclick="heart(this)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
-					        {% else %}
-					            {{ event.s_OfferType }}  <i class="far fa-heart" id="heart" onclick="heart(this)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
-					        {% endif %}
-						</div>
+						<div class="event-interest">{{ e.s_OfferType }}  </div>
+					</div>
+					</a>
+					<div class="event-interest">
+						{% if e in favorites %}
+				            <i class="fas fa-heart fa-2x" id="heart" onclick="heart(event)" data-href="{% url 'event_favorite' pk=e.pk %}"></i>
+				        {% else %}
+				            <i class="far fa-heart fa-2x" id="heart" onclick="heart(event)" data-href="{% url 'event_favorite' pk=e.pk %}"></i>
+				        {% endif %}
 					</div>
 
 <!-- 	                {% if event in favorites %}
