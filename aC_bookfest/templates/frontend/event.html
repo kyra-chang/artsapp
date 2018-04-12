@@ -33,9 +33,9 @@
 		<a >
 			<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)">
 			{% if event in favorites %}
-	            <i class="fas fa-heart" id="heart"></i>  Interest
+	            <i class="fas fa-heart" id="heart">  Interest</i>
 	        {% else %}
-	            <i class="far fa-heart" id="heart"></i>  Interest
+	            <i class="far fa-heart" id="heart">  Interest</i>
 	        {% endif %}
 	        </div>
     	</a>
