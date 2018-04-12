@@ -21,6 +21,7 @@ urlpatterns = [
 
     url(r'^event/(?P<pk>\d+)/$', views.event_detail, name='event_detail'),
     url(r'^event/(?P<pk>\d+)/fav$', views.event_favorite, name='event_favorite'),
+
     # url(r'^event/(?P<pk>\d+)/order$', views.event_order, name='event_order'),
     url(r'^event/(?P<pk>\d+)/claim$', views.claim, name='claim'),
     url(r'^event/(?P<pk>\d+)/checkin$', views.event_checkin, name='event_checkin'),
