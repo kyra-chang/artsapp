@@ -30,8 +30,8 @@
 			{% endif %}
 			</div>
 		</a>
-		<a href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)" >
-			<div class="heart">
+		<a  >
+			<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)">
 			{% if event in favorites %}
 	            <i class="fas fa-heart" id="heart"></i>  Interest
 	        {% else %}
