@@ -20,14 +20,16 @@
 	</div>
 
 	<div id="button-container">
-		<div id="claim" class="button">
-		{% if event.Max_order != 0 %}
-			<i class="fas fa-ticket-alt"></i>  <a href="{% url 'claim' pk=event.pk %}">Claim Tickets</a>
-		{% else %}
-			<h3>No tickets left :'(</h3>
-			<h3>Signup in the waitlist</h3>
-		{% endif %}
-		</div>
+		<a href="{% url 'claim' pk=event.pk %}">
+			<div id="claim" class="button">
+			{% if event.Max_order != 0 %}
+				<i class="fas fa-ticket-alt"></i>  Claim Tickets
+			{% else %}
+				<h3>No tickets left :'(</h3>
+				<h3>Signup in the waitlist</h3>
+			{% endif %}
+			</div>
+		</a>
 
 		<div class="heart">
 		{% if event in favorites %}
@@ -37,7 +39,9 @@
         {% endif %}
         </div>
 
-		<div class="button"><i class="far fa-check-circle"></i>  <a href="{% url 'event_checkin' pk=event.pk %}">Check In</a></div>
+		<a href="{% url 'event_checkin' pk=event.pk %}">
+			<div class="button"><i class="far fa-check-circle"></i>  Check In</div>
+		</a>
 	</div>
 
 	<div id="event-descrip">

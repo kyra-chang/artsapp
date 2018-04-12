@@ -8,6 +8,7 @@ def event_pic_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>
     return 'event_{0}/{1}'.format(instance.id, filename)
 
+
 class Event(models.Model):
     Title = models.CharField(max_length=255, blank=True)
     s_Title = models.CharField(max_length=255, blank=True,null=True)
@@ -24,7 +25,9 @@ class Event(models.Model):
     OfferType = models.CharField(max_length=100, blank=True)
     s_OfferType = models.CharField(max_length=100, blank=True,null=True)
     Max_order = models.IntegerField(null=True,blank=True)
+    orders = models.ManyToManyField('Profile', through='Order')
     Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg', blank=True)
+
 
 #for the use of the extending User model, please go to this website:
 #https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#extending-the-existing-user-model
@@ -70,7 +73,7 @@ class Profile(models.Model):
     # TODO set initial value = 0? or 100?
     points = models.IntegerField(null=True,blank=True,default=0)
     favorites = models.ManyToManyField(Event, related_name='favorited_by')
-    orders = models.ManyToManyField(Event, through='Order')
+    
 
 
 # Kyra 3.24
@@ -78,9 +81,10 @@ class Profile(models.Model):
 # doc: https://docs.djangoproject.com/en/2.0/topics/db/models/#many-to-many-relationships
 # create orders model instance, the data will connect between Profile and event in some way
 class Order(models.Model):  
-    event = models.ForeignKey(Event, null=False, related_name='orders', db_column="eventId",on_delete=models.CASCADE)
-    Profile = models.ForeignKey(Profile, null=False, db_column="studentId", on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, null=False, db_column="eventId",on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, null=False, related_name='orders', db_column="studentId", on_delete=models.CASCADE)
     order_date = models.DateTimeField(null=False)
+    order_confirm = models.BooleanField(default=False)
     order_checkin = models.DateTimeField(null=True)
 
 # Kyra 3.24

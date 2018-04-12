@@ -1,0 +1,18 @@
+
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+
+	<div id="page-title">Check-in</div>
+	<div id="description">
+		Check-in Check-in Check-in
+	</div>
+	<form method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button id="back-button" type="submit">Checkin</button>
+	</form>
+
+<div id="back-button"><a href="javascript:history.go(-1)">< Back</a></div>
+
+{% endblock %}

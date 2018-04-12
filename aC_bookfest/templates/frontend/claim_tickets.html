@@ -3,12 +3,24 @@
 
 {% block content %}
 
-<div id="page-title">Claim Your Tickets</div>
-<div id="description">
-	Visit the Dwinelle Annex for more info. 
-</div>
+	<div id="page-title">Claim Your Tickets</div>
+	<div id="description">
+		Visit the Dwinelle Annex for more info. 
+	</div>
 <!-- if reserved, show text e.g. "you've reserved the ticket! Follow the instrctions above to get it" -->
 <!-- else, show "reserve your ticket" button -->
+{% if check %}
+	<div id="description">
+		You've reserved the ticket! Follow the instrctions above to get it.
+	</div>
+{% else %}
+
+	<form method="post" enctype="multipart/form-data">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <button id="back-button" type="submit">Reserve Your Ticket</button>
+	</form>
+{% endif %}
 <div id="back-button"><a href="javascript:history.go(-1)">< Back</a></div>
 
 {% endblock %}

@@ -63,7 +63,7 @@
 					<li class="sidebar-item"><a href="{% url 'free' %}">Free w/ Cal ID</a></li>
 		        	<li class="sidebar-item"><a href="{% url 'home' %}">Home</a></li>
 		            <li class="sidebar-item"><a href="{% url 'about' %}">About</a></li>
-		            <li class="sidebar-item"><a href="{% url 'user' %}">My Profile</a></li>
+		            <li class="sidebar-item"><a href="{% url 'user' %}">My Events</a></li>
 		            {% if user.is_authenticated %}
 		            	<li class="sidebar-item"><a href="{% url 'cas_ng_logout' %}">Sign Out</a></li>
 		            {% else %}
