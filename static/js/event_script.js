@@ -32,47 +32,47 @@ function myFunction(x) {
 
 $(function() {
 
-    $('a').each(function() { /* [1] */
-         if ( location.hostname === this.hostname || !this.hostname.length ) { /* [1] */
+    // $('a').each(function() { /* [1] */
+    //      if ( location.hostname === this.hostname || !this.hostname.length ) { /* [1] */
 
-            var link = $(this).attr("href"); /* [2] */
+    //         var link = $(this).attr("href"); /* [2] */
 
-            if ( link.match("^#") ) { /* [3] */
+    //         if ( link.match("^#") ) { /* [3] */
 
-                $(this).click(function() {
-                    var target = $(link); /* [4] */ 
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) +']'); /* [4] */ 
-                    if (target.length) {
-                        $('html,body').animate({ /* [5] */ 
-                            scrollTop: target.offset().top - 70 /* [5] */ 
-                        }, 1000); return false; /* [5] */ 
-                    }
-                });
+    //             $(this).click(function() {
+    //                 var target = $(link); /* [4] */ 
+    //                 target = target.length ? target : $('[name=' + this.hash.slice(1) +']'); /* [4] */ 
+    //                 if (target.length) {
+    //                     $('html,body').animate({ /* [5] */ 
+    //                         scrollTop: target.offset().top - 70  [5]  
+    //                     }, 1000); return false; /* [5] */ 
+    //                 }
+    //             });
 
-            } else if ( link.match("^mailto") ) { /* [6] */ 
-                // Act as normal  /* [6] */ 
-            } else {
+    //         } else if ( link.match("^mailto") ) { /* [6] */ 
+    //             // Act as normal  /* [6] */ 
+    //         } else {
 
-                $(this).click(function(e) {
-                    e.preventDefault(); /* [7] */ 
-                    $('html').addClass('fadeSiteOut'); /* [8] */ 
-                    setTimeout(function() { /* [9] */
-                        window.location = link; /* [9] */
-                    }, 800); /* [9] */
-                });
+    //             $(this).click(function(e) {
+    //                 e.preventDefault(); /* [7] */ 
+    //                 $('html').addClass('fadeSiteOut'); /* [8] */ 
+    //                 setTimeout(function() { /* [9] */
+    //                     window.location = link; /* [9] */
+    //                 }, 800); /* [9] */
+    //             });
 
-            }
+    //         }
 
-        }
-    });
-    $("#heart").click(function(event) {
-      // Call `myFunc`
-      event.preventDefault();
-      heart(event.target)
+    //     }
+    // });
+    // $("#heart").click(function(event) {
+    //   // Call `myFunc`
+    //   event.preventDefault();
+    //   heart(event.target)
 
-      // Use `event` here at the event handler level, for instance
-      event.stopPropagation();
-    });
+    //   // Use `event` here at the event handler level, for instance
+    //   event.stopPropagation();
+    // });
   
 });
 

@@ -80,6 +80,11 @@
 		-moz-transition: all 0.3s;
 		-o-transition: all 0.3s;
 	}
+	
+	a, a:link, a:visited {
+		text-decoration: none;
+		color: black;
+	}
 
 	.sidebar-item a, .sidebar-item a:link, .sidebar-item a:visited, .sidebar-item a:hover {
 		text-decoration: none;
