@@ -4,7 +4,7 @@ function heart(t){
 
         console.log(t)
         var likeUrl = t.dataset.href
-        var tog = $("#heart")
+        var tog = $("#heart")[0]
           $.ajax({
               url: likeUrl,
               method: "GET",
