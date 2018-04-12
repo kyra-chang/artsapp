@@ -30,14 +30,15 @@
 			{% endif %}
 			</div>
 		</a>
-
-		<div class="heart">
-		{% if event in favorites %}
-            <i class="fas fa-heart" id="heart" onclick="heart(this)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>  Interest
-        {% else %}
-            <i class="far fa-heart" id="heart" onclick="heart(this)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>  Interest
-        {% endif %}
-        </div>
+		<a href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)" >
+			<div class="heart">
+			{% if event in favorites %}
+	            <i class="fas fa-heart" id="heart"></i>  Interest
+	        {% else %}
+	            <i class="far fa-heart" id="heart"></i>  Interest
+	        {% endif %}
+	        </div>
+    	</a>
 
 		<a href="{% url 'event_checkin' pk=event.pk %}">
 			<div class="button"><i class="far fa-check-circle"></i>  Check In</div>

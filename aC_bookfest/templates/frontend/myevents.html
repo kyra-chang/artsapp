@@ -30,17 +30,11 @@
 						{% else %}
 							<div class="event-tix">{{ e.Max_order }} Tickets</div>
 						{% endif %}
-						<div class="event-interest">{{ e.s_OfferType }}  
-						{% if e in faved %}
-				            <i class="fas fa-heart fa-2x" style="z-index: 100" id="heart" data-href="{% url 'event_favorite' pk=e.pk %}"></i>
-				        {% else %}
-				            <i class="far fa-heart fa-2x" style="z-index: 100" id="heart"  data-href="{% url 'event_favorite' pk=e.pk %}"></i>
-				        {% endif %}</div>
+						<div class="event-interest">{{ e.s_OfferType }}</div>  
+						
+				    
 					</div>
 					</a>
-					<div class="event-interest">
-						
-					</div>
 
 
 	            	

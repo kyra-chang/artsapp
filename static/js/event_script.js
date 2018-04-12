@@ -4,16 +4,16 @@ function heart(t){
 
         console.log(t)
         var likeUrl = t.dataset.href
-
+        var tog = $("#heart")
           $.ajax({
               url: likeUrl,
               method: "GET",
               data: {},
               success: function(data){
-                if (t.dataset.prefix == "fas"){
-                  t.dataset.prefix = "far"
+                if (tog.dataset.prefix == "fas"){
+                  tog.dataset.prefix = "far"
                 } else {
-                  t.dataset.prefix = "fas"
+                  tog.dataset.prefix = "fas"
                 }
               }, error: function(error){
                 console.log(error)
