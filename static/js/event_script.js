@@ -8,7 +8,7 @@ function heart(t){
           $.ajax({
               url: likeUrl,
               method: "GET",
-              data: {},
+              dataType: 'jsonp',
               headers: {
                   'Access-Control-Allow-Origin': 'https://auth.berkeley.edu/cas/'
               },
