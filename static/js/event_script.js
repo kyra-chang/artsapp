@@ -12,6 +12,9 @@ function heart(t){
               xhrFields: {
                   withCredentials: true
               },
+              headers: {
+                  'Access-Control-Allow-Origin': '*'
+              },
               success: function(data){
                 if (tog.dataset.prefix == "fas"){
                   tog.dataset.prefix = "far"
