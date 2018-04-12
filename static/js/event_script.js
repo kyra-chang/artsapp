@@ -1,4 +1,11 @@
 /* Code inspired by W3Schools */
+$("#heart").click(function(event) {
+    // Call `myFunc`
+    heart(event.target)
+
+    // Use `event` here at the event handler level, for instance
+    event.stopPropagation();
+});
 function heart(t){
 
         console.log(t)
