@@ -9,11 +9,8 @@ function heart(t){
               url: likeUrl,
               method: "GET",
               data: {},
-              xhrFields: {
-                  withCredentials: true
-              },
               headers: {
-                  'Access-Control-Allow-Origin': '*'
+                  'Access-Control-Allow-Origin': 'https://auth.berkeley.edu/cas/'
               },
               success: function(data){
                 if (tog.dataset.prefix == "fas"){
