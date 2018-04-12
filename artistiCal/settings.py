@@ -62,7 +62,7 @@ CORS_ORIGIN_WHITELIST = (
     'artistical.berkeley.edu',
     'localhost:8000',
     '127.0.0.1:8000',
-    'https://auth.berkeley.edu/cas/'
+    'https://auth.berkeley.edu/cas/',
 )
 
 CORS_ALLOW_CREDENTIALS = True

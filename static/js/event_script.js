@@ -21,8 +21,6 @@ function heart(t){
                 } else {
                   tog.dataset.prefix = "fas"
                 }
-              }, error: function(error){
-                console.log(error)
               }
             })
        return false;
