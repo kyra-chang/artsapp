@@ -244,9 +244,9 @@
 	}
 
 	#event-location {
-		margin-top: 1%;
+		/*margin-top: 1%;*/
 		text-align: left;
-		margin-bottom: 0%;
+		margin-bottom: 3%;
 		margin-left: 20px;
 		font-style: italic;
 		font-size: 16px;
