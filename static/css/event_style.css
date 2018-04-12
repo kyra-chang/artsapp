@@ -81,7 +81,7 @@
 		-o-transition: all 0.3s;
 	}
 	
-	a, a:link, a:visited {
+	a {
 		text-decoration: none;
 		color: black;
 	}
