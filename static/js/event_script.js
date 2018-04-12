@@ -67,6 +67,7 @@ $(function() {
     });
     $("#heart").click(function(event) {
       // Call `myFunc`
+      event.preventDefault();
       heart(event.target)
 
       // Use `event` here at the event handler level, for instance
@@ -97,12 +98,6 @@ $(document).ready(function() {
       $("body").addClass("no-scroll");
     }
   });
-  $("#heart").click(function(event) {
-      // Call `myFunc`
-      heart(event.target)
 
-      // Use `event` here at the event handler level, for instance
-      event.stopPropagation();
-  });
 
 });
