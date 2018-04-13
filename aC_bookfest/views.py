@@ -41,7 +41,7 @@ def reserve_delete(request, pk):
     order.delete()
     order.event.Max_order += 1
     order.event.save()
-    return render(request, 'frontend/claim_tickets.html', {'check':False})
+    return claim(request, pk)
 
 def claim(request, pk):
     if request.user.is_authenticated:
