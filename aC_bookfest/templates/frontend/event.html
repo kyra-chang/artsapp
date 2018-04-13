@@ -22,10 +22,10 @@
 	<div id="button-container">
 		{% if reserved %}
 		<a href="{% url 'reserve_confirm' pk=event.pk %}">
-		{% elif event.Max_order <= 0 %}
-		<a >
-		{% else %}
+		{% elif if event.Max_order > 0 %}
 		<a href="{% url 'claim' pk=event.pk %}">
+		{% else %}
+		<a >
 		{% endif %}
 			<div id="claim" class="button">
 			{% if event.Max_order > 0 %}
