@@ -86,7 +86,7 @@ def claim(request, pk):
                     'event': event, 'time': order[0].order_date
                 })
 
-            return render(request, 'frontend/claim_tickets.html', {'check':check})
+            return render(request, 'frontend/claim_tickets.html', {'check':check,'pk':pk})
     else:
         return redirect("cas_ng_login")
 
