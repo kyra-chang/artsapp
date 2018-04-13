@@ -41,7 +41,7 @@ def reserve_delete(request, pk):
     order.delete()
     order.event.Max_order += 1
     order.event.save()
-    return claim(request, pk)
+    return event_detail(request, pk)
 
 def claim(request, pk):
     if request.user.is_authenticated:
