@@ -25,27 +25,19 @@
 			{% if event.Max_order != 0 %}
 				<i class="fas fa-ticket-alt"></i>  Claim Tickets
 			{% else %}
-				<h3>No tickets left :'(</h3>
-				<h3>Signup in the waitlist</h3>
+				<div id="event-descrip">No tickets left :'(</div>
 			{% endif %}
 			</div>
 		</a>
 		{% if user.is_authenticated %}
-			<a href="{% url 'cas_ng_login' %}">
-				<div class="heart" >
-
-				{% if event in favorites %}
-		            <i class="fas fa-heart" id="heart"></i>
-		        {% else %}
-		            <i class="far fa-heart" id="heart"></i>
-		        {% endif %}
-		          Interest</div>
-	    	</a>
-
-		{% else %}
-			<a href="">
+			
+	    	<a href="">
 				<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)">
 
+		{% else %}
+			<a href="{% url 'cas_ng_login' %}">
+				<div class="heart" >
+		{% endif %}
 				{% if event in favorites %}
 		            <i class="fas fa-heart" id="heart"></i>
 		        {% else %}
@@ -53,7 +45,6 @@
 		        {% endif %}
 		          Interest</div>
 	    	</a>
-		{% endif %}
 			
 		
 
