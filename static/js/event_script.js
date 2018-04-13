@@ -8,10 +8,7 @@ function heart(t){
           $.ajax({
               url: likeUrl,
               method: "GET",
-              dataType: 'jsonp',
-              headers: {
-                  'Access-Control-Allow-Origin': 'https://auth.berkeley.edu/cas/'
-              },
+
               success: function(data){
                 if (tog.dataset.prefix == "fas"){
                   tog.dataset.prefix = "far"
