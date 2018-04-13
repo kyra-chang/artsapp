@@ -33,11 +33,7 @@
 		{% if user.is_authenticated %}
 			<a href="{% url 'cas_ng_login' %}">
 				<div class="heart" >
-		{% else %}
-			<a >
-				<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)">
-		{% endif %}
-				
+
 				{% if event in favorites %}
 		            <i class="fas fa-heart" id="heart"></i>
 		        {% else %}
@@ -45,6 +41,20 @@
 		        {% endif %}
 		          Interest</div>
 	    	</a>
+
+		{% else %}
+			<a href="">
+				<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)">
+
+				{% if event in favorites %}
+		            <i class="fas fa-heart" id="heart"></i>
+		        {% else %}
+		            <i class="far fa-heart" id="heart"></i>
+		        {% endif %}
+		          Interest</div>
+	    	</a>
+		{% endif %}
+			
 		
 
 		<a href="{% url 'event_checkin' pk=event.pk %}">
