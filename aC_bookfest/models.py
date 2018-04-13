@@ -84,14 +84,14 @@ class Order(models.Model):
     event = models.ForeignKey(Event, null=False, db_column="eventId",on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, null=False, related_name='orders', db_column="studentId", on_delete=models.CASCADE)
     order_date = models.DateTimeField(null=False)
-    order_confirm = models.BooleanField(default=False)
-    order_checkin = models.DateTimeField(null=True)
+    order_confirm = models.CharField(max_length=50,blank=True,default=None,null=True)
+    order_checkin = models.DateTimeField(blank=True,default=None,null=True)
 
 # Kyra 3.24
 # this class is currently not used
-class Interested(models.Model): 
-    user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
-    event = models.ForeignKey(Event, null=False, db_column="eventId", on_delete=models.CASCADE)
+# class Interested(models.Model): 
+#     user = models.ForeignKey(User, null=False, db_column="studentId", on_delete=models.CASCADE)
+#     event = models.ForeignKey(Event, null=False, db_column="eventId", on_delete=models.CASCADE)
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/event_<id>/<filename>

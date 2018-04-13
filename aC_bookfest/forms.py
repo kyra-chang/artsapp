@@ -2,10 +2,10 @@ from django import forms
 from .models import Comment, Order
 from .models import Profile
 
-class DummyForm(forms.ModelForm):
+class ConfirmForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ()
+        model = Order
+        fields = ('order_confirm',)
 
 class OrderForm(forms.ModelForm):
     class Meta:

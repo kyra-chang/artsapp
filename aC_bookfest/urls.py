@@ -25,6 +25,7 @@ urlpatterns = [
     # url(r'^event/(?P<pk>\d+)/order$', views.event_order, name='event_order'),
     url(r'^event/(?P<pk>\d+)/claim$', views.claim, name='claim'),
     url(r'^event/(?P<pk>\d+)/cancel$', views.reserve_delete, name='reserve_delete'),
+    url(r'^event/(?P<pk>\d+)/confirm$', views.reserve_confirm, name='reserve_confirm'),
     url(r'^event/(?P<pk>\d+)/checkin$', views.event_checkin, name='event_checkin'),
 
     # leave ranking feature later

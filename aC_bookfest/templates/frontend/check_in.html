@@ -4,6 +4,7 @@
 {% block content %}
 
 	<div id="page-title">Check-in</div>
+	{% if order %}
 	<div id="description">
 		Check-in Check-in Check-in
 	</div>
@@ -12,6 +13,11 @@
 	    {{ form.as_p }}
 	    <button id="back-button" type="submit">Checkin</button>
 	</form>
+	{% else %}
+	<div id="description">
+		You haven't claimed the ticket yet! Go back to the event page and click on "claim tickets".
+	</div>
+	{% endif %}
 
 <div id="back-button"><a href="javascript:history.go(-1)">< Back</a></div>
 

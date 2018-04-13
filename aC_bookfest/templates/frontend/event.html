@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/regular.css" integrity="sha384-A/oR8MwZKeyJS+Y0tLZ16QIyje/AmPduwrvjeH6NLiLsp4cdE4uRJl8zobWXBm4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
 
-{% with user.Profile.favorites.all as favorites %}
+{% with user.Profile.favorites.all as favorites%}
 			<!-- Event -->
 <div id="event">
 
@@ -20,7 +20,13 @@
 	</div>
 
 	<div id="button-container">
+		{% if reserved %}
+		<a href="{% url 'reserve_confirm' pk=event.pk %}">
+		{% elif event.Max_order < 0 %}
+		<a >
+		{% else %}
 		<a href="{% url 'claim' pk=event.pk %}">
+		{% endif %}
 			<div id="claim" class="button">
 			{% if event.Max_order > 0 %}
 				<i class="fas fa-ticket-alt"></i>  Claim Tickets
@@ -49,7 +55,11 @@
 		
 
 		<a href="{% url 'event_checkin' pk=event.pk %}">
+			{% if checkin %}
+			<div class="button"><i class="fas fa-check-circle"></i>  Check In</div>
+			{% else %}
 			<div class="button"><i class="far fa-check-circle"></i>  Check In</div>
+			{% endif %}
 		</a>
 	</div>
 

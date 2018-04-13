@@ -8,7 +8,22 @@
 	Event name: {{ event.Title }}<br>
 	Order time: {{ time }}
 </div>
+
+{% if confirm %}
+<div id="description">
+	You've already claimed the ticket, Enjoy the event!
+</div>
+{% else %}
+<div id="page-title">Confirmation Code</div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button id="back-button" type="submit">Submit</button>
+</form>
 <div id="back-button"><a href="{% url 'reserve_delete' pk=event.pk %}">Cancel Reservation</a></div>
+{% endif %}
+
+
 <div id="back-button"><a href="{% url 'home' %}">Home</a></div>
 
 {% endblock %}

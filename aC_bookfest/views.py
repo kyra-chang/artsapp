@@ -10,7 +10,7 @@ from django.template import loader
 from .models import Comment
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import ProfileForm, OrderForm, DummyForm
+from .forms import ProfileForm, OrderForm,ConfirmForm
 from django.db import transaction
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -21,6 +21,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 reserve_time = 60*2
+CONFIRM_CODE_TEST = "artistical"
 
 def reserve_check(order):
     time_check = (timezone.now() - order.order_date).total_seconds()
@@ -43,6 +44,24 @@ def reserve_delete(request, pk):
     order.event.save()
     return event_detail(request, pk)
 
+def reserve_confirm(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    order = request.user.Profile.orders.filter(event=event)[0]
+    if request.method == 'POST':
+        form = ConfirmForm(request.POST, instance=order)
+        if form.is_valid():
+            order = form.save(commit=False)
+            if order.order_confirm == CONFIRM_CODE_TEST:
+                order.save()
+    else:
+        form = ConfirmForm()
+
+    return render(request, 'frontend/reserved.html', {
+        'event': event, 'time': order.order_date, 'confirm':order.order_confirm, 'form': form
+    })
+
+
+
 def claim(request, pk):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -60,9 +79,7 @@ def claim(request, pk):
                 # leave point system and ranking feature later
                 #request.user.Profile.points -= event.Cost
                 #request.user.Profile.save()
-                return render(request, 'frontend/reserved.html', {
-                    'event': _event, 'time': order.order_date
-                })
+                return reserve_confirm(request, pk)
         else:
             #method = 'GET'
             #if reserved, show text e.g. "you've reserved the ticket! ..."
@@ -82,10 +99,7 @@ def claim(request, pk):
                 check = False
 
             if check:
-                return render(request, 'frontend/reserved.html', {
-                    'event': event, 'time': order[0].order_date
-                })
-
+                return reserve_confirm(request, pk)
             return render(request, 'frontend/claim_tickets.html', {'check':check,'pk':pk})
     else:
         return redirect("cas_ng_login")
@@ -155,8 +169,6 @@ def event_favorite(request, pk):
             else:
                 fav.remove(event)
                 request.user.Profile.save()
-            # else:
-            #     form = DummyForm()
             return HttpResponse(status=200)
         else:
             return redirect("cas_ng_login")
@@ -169,12 +181,13 @@ def event_favorite(request, pk):
 # UNDER CONSTRUCTION
 # this method is to checkin
 def event_checkin(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    order = request.user.Profile.orders.filter(event=event)
 
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        form = OrderForm(request.POST, instance=order[0])
         if form.is_valid():
-            event = get_object_or_404(Event, pk=pk)
-            order = request.user.Profile.orders.filter(Title=event.Title)[0]
+            order = form.save(commit=False)
             order.order_checkin = timezone.now()
             order.save()
             # TODO verify if the save is success or not
@@ -185,8 +198,12 @@ def event_checkin(request, pk):
     else:
         form = OrderForm()
         if request.user.is_authenticated:
-            return render(request, 'frontend/checkin.html', {
-                'form': form
+            if len(order):
+                order = order[0].order_confirm
+            else:
+                order = False
+            return render(request, 'frontend/check_in.html', {
+                'form': form, 'order': order
             })
         else:
             return redirect("cas_ng_login")
@@ -219,8 +236,15 @@ def event_checkin(request, pk):
 #     })
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
+    order = request.user.Profile.orders.filter(event=event)
+    if len(order):
+        checkin = order[0].order_checkin
+        reserved = order[0].order_date
+    else:
+        checkin = False
+        reserved = False
     return render(request, 'frontend/event.html', {
-        'event': event
+        'event': event, 'checkin': checkin, 'reserved':reserved
     })
 
 # - Kyra 3.19.2018
@@ -296,10 +320,10 @@ class ProfileUpdate(UpdateView):
 def user(request):
     if request.user.is_authenticated:
         p = request.user.Profile
-        for order in p.orders.filter(order_confirm=False):
+        for order in p.orders.filter(order_confirm__isnull=True):
             reserve_check(order)
-        reserved = p.orders.filter(order_confirm=False).values_list('event', flat=True)
-        claimed = p.orders.filter(order_confirm=True).values_list('event', flat=True)
+        reserved = p.orders.filter(order_confirm__isnull=True).values_list('event', flat=True)
+        claimed = p.orders.filter(order_confirm__isnull=False).values_list('event', flat=True)
         faved = p.favorites.all()
         events = faved.union(Event.objects.filter(id__in=reserved | claimed))
 
