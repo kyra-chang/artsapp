@@ -72,6 +72,11 @@ def claim(request, pk):
             else:
                 #no order data, show button
                 check = False
+            
+            if check:
+                return render(request, 'frontend/reserved.html', {
+                    'event': event, 'time': order[0].order_date
+                })
 
             return render(request, 'frontend/claim_tickets.html', {'check':check})
     else:
