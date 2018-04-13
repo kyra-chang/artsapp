@@ -33,11 +33,11 @@
 		<a >
 			<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)">
 			{% if event in favorites %}
-	            <i class="fas fa-heart" id="heart">  Interest</i>
+	            <i class="fas fa-heart" id="heart"></i>
 	        {% else %}
-	            <i class="far fa-heart" id="heart">  Interest</i>
+	            <i class="far fa-heart" id="heart"></i>
 	        {% endif %}
-	        </div>
+	          Interest</div>
     	</a>
 
 		<a href="{% url 'event_checkin' pk=event.pk %}">
