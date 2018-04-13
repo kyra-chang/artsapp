@@ -20,6 +20,28 @@
 
 	{% with user.Profile.favorites.all as favorites %}
 	    {% if latest_event_list %}
+	    	<div class="event-container" >
+            	<a href="{% url 'event_detail' pk=babf.pk %}">
+                {% if babf.Picture.url %}
+                <div class="event-image">
+                    <img src="{{ babf.Picture.url }}" alt="{{ babf.Title }}"/>
+                    <!-- <img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png">  -->
+                </div>
+                {% endif %}
+                <div class="event-info color0" >
+					<div class="event-title">{{ babf.s_Title }}</div>
+					<div class="event-location">{{ babf.s_Time }} | {{ babf.s_Location }}</div>
+					{% if babf.Max_order > 0 %}
+						<div class="event-tix">{{ babf.Max_order }} Tickets</div>
+					{% else %}
+						<div class="event-tix">All Claimed</div>
+					{% endif %}
+					<!-- <div class="event-interest">{{ event.favorited_by.count }} Interested</div> -->
+					<div class="event-interest">{{ babf.s_OfferType }}</div>
+				</div>
+    	
+            	</a>
+            </div>
 	        {% for event in latest_event_list %}
 	            <div class="event-container" >
 	            	<a href="{% url 'event_detail' pk=event.pk %}">
@@ -29,7 +51,7 @@
 	                    <!-- <img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png">  -->
 	                </div>
 	                {% endif %}
-	                <div class="event-info {% cycle 'color0' 'color1' 'color2' %}" >
+	                <div class="event-info {% cycle 'color1' 'color2' 'color0' %}" >
 						<div class="event-title">{{ event.s_Title }}</div>
 						<div class="event-location">{{ event.s_Time }} | {{ event.s_Location }}</div>
 						{% if event.Max_order > 0 %}
@@ -40,12 +62,7 @@
 						<!-- <div class="event-interest">{{ event.favorited_by.count }} Interested</div> -->
 						<div class="event-interest">{{ event.s_OfferType }}</div>
 					</div>
-
-<!-- 	                {% if event in favorites %}
-	                    <i class="fas fa-heart fa-3x" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
-	                {% else %}
-	                    <i class="far fa-heart fa-3x" id="#{{event.pk}}" onclick="f(event)" data-href="{% url 'event_favorite' pk=event.pk %}"></i>
-	                {% endif %} -->
+	    	
 	            	</a>
 	            </div>
 	        {% endfor %}
