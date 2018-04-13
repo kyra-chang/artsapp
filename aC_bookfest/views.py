@@ -181,10 +181,11 @@ def event_favorite(request, pk):
 # UNDER CONSTRUCTION
 # this method is to checkin
 def event_checkin(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    order = request.user.Profile.orders.filter(event=event)
+    
 
     if request.method == 'POST':
+        event = get_object_or_404(Event, pk=pk)
+        order = request.user.Profile.orders.filter(event=event)
         form = OrderForm(request.POST, instance=order[0])
         if form.is_valid():
             order = form.save(commit=False)
@@ -198,6 +199,8 @@ def event_checkin(request, pk):
     else:
         form = OrderForm()
         if request.user.is_authenticated:
+            event = get_object_or_404(Event, pk=pk)
+            order = request.user.Profile.orders.filter(event=event)
             if len(order):
                 order = order[0].order_confirm
             else:
@@ -236,10 +239,14 @@ def event_checkin(request, pk):
 #     })
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    order = request.user.Profile.orders.filter(event=event)
-    if len(order):
-        checkin = order[0].order_checkin
-        reserved = order[0].order_date
+    if request.user.is_authenticated:
+        order = request.user.Profile.orders.filter(event=event)
+        if len(order):
+            checkin = order[0].order_checkin
+            reserved = order[0].order_date
+        else:
+            checkin = False
+            reserved = False
     else:
         checkin = False
         reserved = False
