@@ -22,7 +22,7 @@
 	<div id="button-container">
 		<a href="{% url 'claim' pk=event.pk %}">
 			<div id="claim" class="button">
-			{% if event.Max_order != 0 %}
+			{% if event.Max_order > 0 %}
 				<i class="fas fa-ticket-alt"></i>  Claim Tickets
 			{% else %}
 				<div id="event-descrip">No tickets left :'(</div>
