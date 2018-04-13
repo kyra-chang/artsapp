@@ -7,16 +7,14 @@ function heart(t){
         var tog = $("#heart")[0]
           $.ajax({
               url: likeUrl,
-              method: "POST",
-              data: {},
+              method: "GET",
+
               success: function(data){
                 if (tog.dataset.prefix == "fas"){
                   tog.dataset.prefix = "far"
                 } else {
                   tog.dataset.prefix = "fas"
                 }
-              }, error: function(error){
-                console.log(error)
               }
             })
        return false;

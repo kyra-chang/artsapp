@@ -32,7 +32,11 @@
 	                <div class="event-info {% cycle 'color0' 'color1' 'color2' %}" >
 						<div class="event-title">{{ event.s_Title }}</div>
 						<div class="event-location">{{ event.s_Time }} | {{ event.s_Location }}</div>
-						<div class="event-tix">{{ event.Max_order }} Tickets</div>
+						{% if event.Max_order > 0 %}
+							<div class="event-tix">{{ event.Max_order }} Tickets</div>
+						{% else %}
+							<div class="event-tix">All Claimed</div>
+						{% endif %}
 						<!-- <div class="event-interest">{{ event.favorited_by.count }} Interested</div> -->
 						<div class="event-interest">{{ event.s_OfferType }}</div>
 					</div>

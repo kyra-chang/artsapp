@@ -35,6 +35,14 @@ def reserve_check(order):
         #time not exceed, show text
         return True
 
+def reserve_delete(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    order = request.user.Profile.orders.filter(event=event)[0]
+    order.delete()
+    order.event.Max_order += 1
+    order.event.save()
+    return claim(request, pk)
+
 def claim(request, pk):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -73,7 +81,12 @@ def claim(request, pk):
                 #no order data, show button
                 check = False
 
-            return render(request, 'frontend/claim_tickets.html', {'check':check})
+            if check:
+                return render(request, 'frontend/reserved.html', {
+                    'event': event, 'time': order[0].order_date
+                })
+
+            return render(request, 'frontend/claim_tickets.html', {'check':check,'pk':pk})
     else:
         return redirect("cas_ng_login")
 

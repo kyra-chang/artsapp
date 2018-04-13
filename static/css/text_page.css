@@ -241,7 +241,7 @@
 		margin-bottom: 70px;
 	}
 
-	#back-button a {
+	#back-button a, button {
 		text-align: center;
 		color: white;
 		padding: 15px 20px;

@@ -22,23 +22,31 @@
 	<div id="button-container">
 		<a href="{% url 'claim' pk=event.pk %}">
 			<div id="claim" class="button">
-			{% if event.Max_order != 0 %}
+			{% if event.Max_order > 0 %}
 				<i class="fas fa-ticket-alt"></i>  Claim Tickets
 			{% else %}
-				<h3>No tickets left :'(</h3>
-				<h3>Signup in the waitlist</h3>
+				<div id="event-descrip">No tickets left :'(</div>
 			{% endif %}
 			</div>
 		</a>
-		<a >
-			<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" >
-			{% if event in favorites %}
-	            <i class="fas fa-heart" id="heart"></i>  Interest
-	        {% else %}
-	            <i class="far fa-heart" id="heart"></i>  Interest
-	        {% endif %}
-	        </div>
-    	</a>
+		{% if user.is_authenticated %}
+			
+	    	<a >
+				<div class="heart" data-href="{% url 'event_favorite' pk=event.pk %}" onclick="heart(this)">
+
+		{% else %}
+			<a href="{% url 'cas_ng_login' %}">
+				<div class="heart" >
+		{% endif %}
+				{% if event in favorites %}
+		            <i class="fas fa-heart" id="heart"></i>
+		        {% else %}
+		            <i class="far fa-heart" id="heart"></i>
+		        {% endif %}
+		          Interest</div>
+	    	</a>
+			
+		
 
 		<a href="{% url 'event_checkin' pk=event.pk %}">
 			<div class="button"><i class="far fa-check-circle"></i>  Check In</div>
