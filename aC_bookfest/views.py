@@ -37,7 +37,7 @@ def reserve_check(order):
 
 def reserve_delete(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    order = request.user.Profile.orders.filter(event=event)
+    order = request.user.Profile.orders.filter(event=event)[0]
     order.delete()
     order.event.Max_order += 1
     order.event.save()
