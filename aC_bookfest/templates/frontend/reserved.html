@@ -8,6 +8,7 @@
 	Event name: {{ event.Title }}<br>
 	Order time: {{ time }}
 </div>
+<div id="back-button"><a href="{% url 'reserve_delete' pk=event.pk %}">Cancel Reservation</a></div>
 <div id="back-button"><a href="{% url 'home' %}">Home</a></div>
 
 {% endblock %}
