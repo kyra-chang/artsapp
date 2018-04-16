@@ -24,8 +24,11 @@
             	<a href="{% url 'event_detail' pk=babf.pk %}">
                 {% if babf.Picture.url %}
                 <div class="event-image">
+                	{% if babf.Max_order > 0 %}
                     <img src="{{ babf.Picture.url }}" alt="{{ babf.Title }}"/>
-                    <!-- <img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png">  -->
+                    {% else %}
+                    <img src="{{ babf.Picture.url }}" alt="{{ babf.Title }}" style="-webkit-filter: grayscale(70%) contrast(30%)"/>
+                    {% endif %}
                 </div>
                 {% endif %}
                 <div class="event-info color0" >
@@ -47,7 +50,11 @@
 	            	<a href="{% url 'event_detail' pk=event.pk %}">
 	                {% if event.Picture.url %}
 	                <div class="event-image">
+	                    {% if event.Max_order > 0 %}
 	                    <img src="{{ event.Picture.url }}" alt="{{ event.Title }}"/>
+	                    {% else %}
+	                    <img src="{{ event.Picture.url }}" alt="{{ event.Title }}" style="-webkit-filter: grayscale(70%) contrast(30%)"/>
+	                    {% endif %}
 	                    <!-- <img src="http://www.bestwesternoakland.com/wp-content/uploads/2017/10/oak-museum-exterior-front.png">  -->
 	                </div>
 	                {% endif %}
