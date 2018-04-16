@@ -20,8 +20,25 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 
-reserve_time = 60*2
+reserve_time = 60*60*24*7
 CONFIRM_CODE_TEST = "artistical"
+
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if request.user.is_authenticated:
+        order = request.user.Profile.orders.filter(event=event)
+        if len(order):
+            checkin = order[0].order_checkin
+            reserved = order[0].order_date
+        else:
+            checkin = False
+            reserved = False
+    else:
+        checkin = False
+        reserved = False
+    return render(request, 'frontend/event.html', {
+        'event': event, 'checkin': checkin, 'reserved':reserved
+    })
 
 def reserve_check(order):
     time_check = (timezone.now() - order.order_date).total_seconds()
@@ -196,7 +213,7 @@ def event_checkin(request, pk):
             messages.success(request, 'You checkin!')
             #request.user.Profile.points += 500
             #request.user.Profile.save()
-            return redirect('home')
+            return event_detail(request, pk)
     else:
         form = OrderForm()
         if request.user.is_authenticated:
@@ -238,22 +255,7 @@ def event_checkin(request, pk):
 #     return render(request, 'form/order.html', {
 #         'form': form, 'event': event
 #     })
-def event_detail(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    if request.user.is_authenticated:
-        order = request.user.Profile.orders.filter(event=event)
-        if len(order):
-            checkin = order[0].order_checkin
-            reserved = order[0].order_date
-        else:
-            checkin = False
-            reserved = False
-    else:
-        checkin = False
-        reserved = False
-    return render(request, 'frontend/event.html', {
-        'event': event, 'checkin': checkin, 'reserved':reserved
-    })
+
 
 # - Kyra 3.19.2018
 # this method is to upload the pictures and comments for specific events
