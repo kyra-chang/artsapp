@@ -8,11 +8,13 @@
 	<div id="description">
 		Check-in Check-in Check-in
 	</div>
-	<form method="post" enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {{ form.as_p }}
-	    <button id="back-button" type="submit">Checkin</button>
-	</form>
+	<div id="back-button">
+		<form method="post" enctype="multipart/form-data">
+		    {% csrf_token %}
+		    {{ form.as_p }}
+		    <button id="back-button" type="submit">Checkin</button>
+		</form>
+	</div>
 	{% else %}
 	<div id="description">
 		You haven't claimed the ticket yet! Go back to the event page and click on "claim tickets".
