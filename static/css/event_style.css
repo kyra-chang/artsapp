@@ -256,7 +256,7 @@
 	#event-descrip {
 		width: 100%;
 		line-height: 25px;
-		text-align: justify;
+		text-align: left;
 		padding: 5%;
 		margin: auto;
 	}
@@ -327,6 +327,7 @@
 	}
 	#button-container {
 		margin: 3%;
+		margin-top: 10%;
 		/*3% = 20px in kyra's phone*/
 		text-align: center;
 	}
