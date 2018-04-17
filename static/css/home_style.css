@@ -104,7 +104,8 @@
 	#nav-bar {
 		height: 75px;
 		/* rose garden */
-		background-color: rgb(238, 31, 96);
+		background-color: rgb(238, 31, 96)
+		background: linear-gradient(to right, rgb(238, 31, 96) , rgb(237, 78, 51));
 	}
 
 /*Sidebar*/
