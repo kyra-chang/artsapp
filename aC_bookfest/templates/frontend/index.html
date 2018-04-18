@@ -11,7 +11,7 @@
 <!-- Spotlight -->
 <div id="spotlight-container" class="container-fluid">
 	<div id="spotlight-image" class="container-fluid">
-		<img src="{% static "images/spotlight.gif" %}">
+		<img src="{% static "images/spotlight.gif" %}" alt="Spotlight Image">
 	</div>
 	<div id="spotlight-text">
 		
@@ -36,7 +36,7 @@
                 </div>
                 {% endif %}
                 <div class="event-info color0" >
-					<div class="event-title">{{ babf.s_Title }}</div>
+					<div class="event-title"><h2>{{ babf.s_Title }}</h2></div>
 					<div class="event-location">{{ babf.s_Time }} | {{ babf.s_Location }}</div>
 					{% if babf.Max_order > 0 %}
 						<div class="event-tix">{{ babf.Max_order }} Tickets</div>
