@@ -6,8 +6,16 @@
 <div id="page-title">Reservation Success</div>
 <div id="description">
 	Event name: {{ event.Title }}<br>
-	Order time: {{ time }}
+	Order time: {{ time }}<br>
+	You have claimed a ticket for this experience. Please pick up your ticket at the Dwinelle Annex on the 2nd Floor at UC Berkeley, beginning on/after April 25th. Pick up days and times are below. Bring this confirmation to claim your ticket. You will receive a code to enter in the field below when you pick up your ticket. <br> 
+	<br>
+	Monday - Friday, 10am-5pm<br>
+	Dwinelle Annex <br>
+	Floor 2, Room 209 or 212<br>
+	<br>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.3926186843202!2d-122.26175397075747!3d37.87033949873388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80857c265dd800a1%3A0x49b5267030c6cd3b!2sDwinelle+Annex%2C+Berkeley%2C+CA+94704!5e0!3m2!1sen!2sus!4v1524204341242" width="300" height="225" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>
+
 
 {% if confirm %}
 <div id="description">
@@ -15,6 +23,13 @@
 </div>
 {% else %}
 <div id="page-title">Confirmation Code</div>
+
+{% if confirm != None %}
+<div id="description">
+	The code you insert is not correct, please try again.
+</div>
+{% endif %}
+
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

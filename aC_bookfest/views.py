@@ -64,7 +64,7 @@ def reserve_delete(request, pk):
 def reserve_confirm(request, pk):
     event = get_object_or_404(Event, pk=pk)
     order = request.user.Profile.orders.filter(event=event)[0]
-    confirm = False
+    confirm = None
     if request.method == 'POST':
         form = ConfirmForm(request.POST, instance=order)
         if form.is_valid():
@@ -76,6 +76,8 @@ def reserve_confirm(request, pk):
                 confirm = False
     else:
         form = ConfirmForm()
+        if order.order_confirm == CONFIRM_CODE_TEST:
+            confirm = True
 
     return render(request, 'frontend/reserved.html', {
         'event': event, 'time': order.order_date, 'confirm':confirm, 'form': form
