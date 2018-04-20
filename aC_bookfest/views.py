@@ -70,11 +70,14 @@ def reserve_confirm(request, pk):
             order = form.save(commit=False)
             if order.order_confirm == CONFIRM_CODE_TEST:
                 order.save()
+                confirm = True
+            else:
+                confirm = False
     else:
         form = ConfirmForm()
 
     return render(request, 'frontend/reserved.html', {
-        'event': event, 'time': order.order_date, 'confirm':order.order_confirm, 'form': form
+        'event': event, 'time': order.order_date, 'confirm':confirm, 'form': form
     })
 
 
