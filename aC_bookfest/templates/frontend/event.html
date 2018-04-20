@@ -29,23 +29,20 @@
 		<div id="event-location">{{ event.Time }}</div>
 		<div id="event-location">{{ event.Location }}</div>
 		<div id="event-location">{{ event.OfferType }}</div>
+		<div id="event-location">{{ event.Max_order }} Tickets Available</div>
 	</div>
 
 	<div id="button-container">
 		{% if reserved %}
 		<a href="{% url 'reserve_confirm' pk=event.pk %}">
-		{% elif event.Max_order > 0 %}
-		<a href="{% url 'claim' pk=event.pk %}">
-		{% else %}
-		<a >
-		{% endif %}
-			<div id="claim" class="button">
-			{% if event.Max_order > 0 %}
-				<i class="fas fa-ticket-alt"></i>  Claim Tickets</div>
-			{% else %}
-				No tickets left</div>
-			{% endif %}
+			<div id="claim" class="button"><i class="fas fa-ticket-alt"></i>  Manage Tickets</div>
 		</a>
+		{% else %}
+		<a href="{% url 'claim' pk=event.pk %}">
+			<div id="claim" class="button"><i class="fas fa-ticket-alt"></i>  Claim Tickets</div>
+		</a>
+		{% endif %}
+		
 		{% if user.is_authenticated %}
 			
 	    	<a >
