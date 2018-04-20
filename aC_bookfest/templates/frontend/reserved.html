@@ -24,13 +24,6 @@
 </div>
 {% else %}
 <div id="page-title">Confirmation Code</div>
-
-{% if wrong %}
-<div id="description">
-	The code you insert is not correct, please try again.
-</div>
-{% endif %}
-
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
