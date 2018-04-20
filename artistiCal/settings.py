@@ -62,6 +62,8 @@ CORS_ORIGIN_WHITELIST = (
     'artistical.berkeley.edu',
     'localhost:8000',
     '127.0.0.1:8000',
+    '.compute-1.amazonaws.com', # allows viewing of instances directly
+    '.elasticbeanstalk.com',
     'https://auth.berkeley.edu/cas/',
 )
 
@@ -122,7 +124,9 @@ AUTHENTICATION_BACKENDS = (
     'django_cas_ng.backends.CASBackend',
 )
 CAS_SERVER_URL = 'https://auth.berkeley.edu/cas/'
-
+CAS_REDIRECT_URL = '/'
+CAS_IGNORE_REFERER = False
+CAS_LOGOUT_COMPLETELY = True
 AUTH_USER_MODEL = 'auth.User'
 LOGIN_REDIRECT_URL = '/'
 
