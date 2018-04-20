@@ -129,6 +129,7 @@ CAS_IGNORE_REFERER = False
 CAS_LOGOUT_COMPLETELY = True
 AUTH_USER_MODEL = 'auth.User'
 LOGIN_REDIRECT_URL = '/'
+CAS_VERSION = 3
 
 FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.MemoryFileUploadHandler",
  "django.core.files.uploadhandler.TemporaryFileUploadHandler"]
