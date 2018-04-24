@@ -50,7 +50,6 @@ def reserve_check(order):
         order.event.save()
         return False
     else:
-        time not exceed, show text
         return True
 
 def reserve_delete(request, pk):
