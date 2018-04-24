@@ -41,17 +41,17 @@ def event_detail(request, pk):
     })
 
 def reserve_check(order):
-    # time_check = (timezone.now() - order.order_date).total_seconds()
-    # if time_check > reserve_time:
-    #     #time exceed, show Button
-    #     #delete order
-    #     order.delete()
-    #     order.event.Max_order += 1
-    #     order.event.save()
-    #     return False
-    # else:
-        #time not exceed, show text
-    return True
+    time_check = (timezone.now() - order.order_date).total_seconds()
+    if time_check > reserve_time:
+        #time exceed, show Button
+        #delete order
+        order.delete()
+        order.event.Max_order += 1
+        order.event.save()
+        return False
+    else:
+        time not exceed, show text
+        return True
 
 def reserve_delete(request, pk):
     event = get_object_or_404(Event, pk=pk)
