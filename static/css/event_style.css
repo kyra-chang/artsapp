@@ -168,7 +168,7 @@
 		}
 
 	.sidebar-container {
-		position: fixed;
+		position: absolute;
 		float: left;
 		width: 200px;
 		height: 100%;
