@@ -21,7 +21,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 reserve_time = 60*60*24*7
-CONFIRM_CODE_TEST = "artistical"
+CONFIRM_CODE_TEST = "artsdesign"
 
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
