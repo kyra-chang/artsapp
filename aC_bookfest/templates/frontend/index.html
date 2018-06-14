@@ -24,31 +24,6 @@
 
 	{% with user.Profile.favorites.all as favorites %}
 	    {% if latest_event_list %}
-	    	<div class="event-container" >
-            	<a href="{% url 'event_detail' pk=babf.pk %}">
-                {% if babf.Picture.url %}
-                <div class="event-image">
-                	{% if babf.Max_order > 0 %}
-                    <img src="{{ babf.Picture.url }}" alt="{{ babf.Title }}"/>
-                    {% else %}
-                    <img src="{{ babf.Picture.url }}" alt="{{ babf.Title }}" style="-webkit-filter: grayscale(70%) contrast(30%)"/>
-                    {% endif %}
-                </div>
-                {% endif %}
-                <div class="event-info color0" >
-					<div class="event-title"><h2>{{ babf.s_Title }}</h2></div>
-					<div class="event-location">{{ babf.s_Time }} | {{ babf.s_Location }}</div>
-					{% if babf.Max_order > 0 %}
-						<div class="event-tix">{{ babf.Max_order }} Tickets</div>
-					{% else %}
-						<div class="event-tix">All Claimed</div>
-					{% endif %}
-					<!-- <div class="event-interest">{{ event.favorited_by.count }} Interested</div> -->
-					<div class="event-interest">{{ babf.s_OfferType }}</div>
-				</div>
-    	
-            	</a>
-            </div>
 	        {% for event in latest_event_list %}
 	            <div class="event-container" >
 	            	<a href="{% url 'event_detail' pk=event.pk %}">

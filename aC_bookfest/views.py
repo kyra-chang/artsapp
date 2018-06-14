@@ -165,9 +165,8 @@ def index(request):
 # Done by Alex
 # Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
 def home(request):
-    babf = get_object_or_404(Event, pk=6)
-    latest_event_list = Event.objects.filter(Type='event').order_by('Time').reverse().exclude(pk=6)
-    return render(request, 'frontend/index.html', { 'babf': babf,'latest_event_list': latest_event_list })
+    latest_event_list = Event.objects.filter(Type='event').order_by('Time').reverse()
+    return render(request, 'frontend/index.html', { 'latest_event_list': latest_event_list })
 
 def free(request):
     free_list = Event.objects.filter(Type='free')
