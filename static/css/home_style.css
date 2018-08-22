@@ -235,6 +235,13 @@
     	left: 50%;
     	transform: translate(-50%, -50%);
 	}
+    .calid-block {
+    	height: 60px;
+    	background: rgb(207, 221, 69);
+    }
+    .calid-text {
+    	font-size: 24px;
+    }	
 
 /* Events */
 
