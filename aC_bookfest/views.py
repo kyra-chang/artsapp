@@ -46,7 +46,7 @@ def reserve_check(order):
         #time exceed, show Button
         #delete order
         order.delete()
-        order.event.Max_order += 1
+        order.event.order_available += 1
         order.event.save()
         return False
     else:
@@ -56,7 +56,7 @@ def reserve_delete(request, pk):
     event = get_object_or_404(Event, pk=pk)
     order = request.user.Profile.orders.filter(event=event)[0]
     order.delete()
-    order.event.Max_order += 1
+    order.event.order_available += 1
     order.event.save()
     return event_detail(request, pk)
 
@@ -95,7 +95,7 @@ def claim(request, pk):
                 order.event = _event
                 order.order_date = timezone.now()
                 order.save()
-                _event.Max_order -= 1
+                _event.order_available -= 1
                 _event.save()
                 # TODO verify if the save is success or not
                 # leave point system and ranking feature later
@@ -136,7 +136,7 @@ def claim(request, pk):
 #             order.event = event
 #             order.order_date = timezone.now()
 #             order.save()
-#             event.Max_order -= 1
+#             event.order_available -= 1
 #             event.save()
 #             # TODO verify if the save is success or not
 #             # leave point system and ranking feature later
@@ -165,7 +165,7 @@ def index(request):
 # Done by Alex
 # Displays the five latest events (shows a picture of the events and you can click on them to get to the event page)
 def home(request):
-    latest_event_list = Event.objects.filter(Type='event').order_by('Time').reverse()
+    latest_event_list = Event.objects.filter(Type='event').order_by('-order_available', 'Time')
     return render(request, 'frontend/index.html', { 'latest_event_list': latest_event_list })
 
 def free(request):
@@ -246,7 +246,7 @@ def event_checkin(request, pk):
 #             order.event = event
 #             order.order_date = timezone.now()
 #             order.save()
-#             event.Max_order -= 1
+#             event.order_available -= 1
 #             event.save()
 #             # TODO verify if the save is success or not
 #             messages.success(request, 'You ordered the tickets!')

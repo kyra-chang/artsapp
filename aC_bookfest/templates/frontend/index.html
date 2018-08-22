@@ -19,6 +19,11 @@
 </div>
 <!-- Events -->
 <div class="rest">
+	<div id="spotlight-container" class="container-fluid">
+		<div id="spotlight-text">
+			Free with Cal ID
+		</div>
+	</div>
 <div class="angular-content" ng-app="myApp" ng-controller="myController">
 
 
@@ -29,7 +34,7 @@
 	            	<a href="{% url 'event_detail' pk=event.pk %}">
 	                {% if event.Picture.url %}
 	                <div class="event-image">
-	                    {% if event.Max_order > 0 %}
+	                    {% if event.order_available > 0 %}
 	                    <img src="{{ event.Picture.url }}" alt="{{ event.Title }}"/>
 	                    {% else %}
 	                    <img src="{{ event.Picture.url }}" alt="{{ event.Title }}" style="-webkit-filter: grayscale(70%) contrast(30%)"/>
@@ -40,8 +45,8 @@
 	                <div class="event-info {% cycle 'color1' 'color2' 'color0' %}" >
 						<div class="event-title">{{ event.s_Title }}</div>
 						<div class="event-location">{{ event.s_Time }} | {{ event.s_Location }}</div>
-						{% if event.Max_order > 0 %}
-							<div class="event-tix">{{ event.Max_order }} Tickets</div>
+						{% if event.order_available > 0 %}
+							<div class="event-tix">{{ event.order_available }}/{{event.Max_order}} Tickets Available</div>
 						{% else %}
 							<div class="event-tix">All Claimed</div>
 						{% endif %}

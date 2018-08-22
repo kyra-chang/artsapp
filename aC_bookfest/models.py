@@ -25,6 +25,7 @@ class Event(models.Model):
     OfferType = models.CharField(max_length=100, blank=True)
     s_OfferType = models.CharField(max_length=100, blank=True,null=True)
     Max_order = models.IntegerField(null=True,blank=True)
+    order_available = models.IntegerField(null=True,blank=True)
     orders = models.ManyToManyField('Profile', through='Order')
     Picture = models.FileField(upload_to=event_pic_path,null=True,default='settings.MEDIA_ROOT/default.jpg', blank=True)
 
